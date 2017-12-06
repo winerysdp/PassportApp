@@ -22,15 +22,16 @@ export default class noteScreen extends Component {
         	</Text>
         	<TextInput
 				style={{
+					marginLeft: 12,
 					height: 200,
 					fontSize: 15
 				}}
 				editable = {true}
 				multiline = {true}
-				onSubmitEditing = {Keyboard.dismiss}
+				//onSubmitEditing = {Keyboard.dismiss}
 				numberofLines = {4}
 				onChangeText={(text) => this.setState({text})}
-				value={"Enter Notes"}
+				value={this.state.text}
 			/>
      	</View>		
 	);
