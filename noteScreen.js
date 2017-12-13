@@ -14,8 +14,8 @@ export default class noteScreen extends Component {
 	return (
 		<View>
         	<Button 
-        		title= "Go to product page"
-        		onPress={() => navigate('Product')}
+        		title= "Go back"
+        		onPress={() => navigate('Home')}
         		/>
         	<Text style={{fontSize: 20, textAlign: 'center'}}>
         		Notes

@@ -3,10 +3,14 @@ import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, K
 import { StackNavigator } from 'react-navigation';
 import noteScreen from './noteScreen';
 import productScreen from './productScreen';
+import reviewScreen from './reviewScreen';
+import navScreen from './navScreen';
 
 const App = StackNavigator({
-	Note: { screen: noteScreen},
-	Product: { screen: productScreen},
+  Home: { screen: navScreen},
+  Note: { screen: noteScreen},
+  Product: { screen: productScreen},
+	Review: { screen: reviewScreen},
 });
 
 export default App;

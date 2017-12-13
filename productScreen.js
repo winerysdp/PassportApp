@@ -28,8 +28,13 @@ constructor(props) {
 		}
 	}
 	render() {
+		const { navigate } = this.props.navigation;
 		return(
 			<View>
+			<Button 
+        		title= "Go back"
+        		onPress={() => navigate('Home')}
+        		/>
 				<View style = {{
 					alignItems: 'center',
 				}}>
