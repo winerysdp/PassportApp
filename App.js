@@ -1,38 +1,22 @@
 import React, {Component} from 'react';
 import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import noteScreen from './noteScreen';
-import productScreen from './productScreen';
-import reviewScreen from './reviewScreen';
-import navScreen from './navScreen';
+import noteScreen from './NoteScreen.js';
+import wineryScreen from './WineryScreen.js';
+import passCover from './PassCover.js';
+import passNav from './PassNav.js';
+import homeScreen from './HomeScreen.js';
+import mapScreen from './MapScreen.js';
+import calendarScreen from './CalendarScreen.js';
 
 const App = StackNavigator({
-  Home: { screen: navScreen},
-  Note: { screen: noteScreen},
-  Product: { screen: productScreen},
-	Review: { screen: reviewScreen},
+  Passport: { screen: passCover},
+  Home: {screen: homeScreen},
+  Map: {screen: mapScreen},
+  Calendar: {screen: calendarScreen},
+	Note: { screen: noteScreen},
+	Winery: { screen: wineryScreen},
+	PassNav: { screen: passNav},
 });
 
 export default App;
-const styles = StyleSheet.create({
-  cover: {
-    flex: 1,
-    backgroundColor: '#4863A0',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  book: {
-    flex: 1,
-    backgroundColor: '#ffebcd',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-	margin: 20,
-  },
-  row: {
-	flexDirection: 'row',
-	justifyContent: 'center',
-	alignItems: 'center',
-  },
-});
