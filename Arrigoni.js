@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 class winery {
@@ -9,6 +9,14 @@ class winery {
 		this.address = address;
 		this.info = info;
 		this.stamp = require('./assets/no-stamp.png');
+	}
+	goToMap() {
+		if (Platform.OS === 'ios') {
+			Linking.openURL('http://maps.apple.com/?daddr=1287+Portland-Cobalt+Road,Portland,CT')
+		}
+		else {
+			Linking.openURL('geo:287+Judson+Ave%2C+Mystic%2C+CT')
+		}
 	}
 }
 
@@ -49,7 +57,8 @@ constructor(props) {
 					height: 350
 				}}
 				/>
-				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.state.wine.address} </Text>
+				
+				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.state.wine.address} onPress={()=>this.state.wine.goToMap()}/>
 				<Image 
 				source={this.state.wine.stamp}
 				style={{
