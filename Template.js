@@ -10,9 +10,19 @@ class winery {
 		this.info = info;
 		this.stamp = require('./assets/no-stamp.png');
 	}
+	goToMap() {
+		if (Platform.OS === 'ios') {
+			//Linking.openURL('http://maps.apple.com/?daddr=848+Rte+171,Woodstock,CT')
+		}
+		else {
+			//Linking.openURL('geo:848+Rte+171%2C+Woodstock%2C+CT')
+		}
+	}
 }
-
-var bobsWine = new winery("Name", require('./assets/wine3.jpg'), "Address", "Description");
+var name = "Vineyard Name";
+var address = "Vineyard Address";
+var description = "Vineyard Description";
+var bobsWine = new winery(name, require('./assets/wine3.jpg'), address, description);
 
 export default class wineryScreen extends Component {
 constructor(props) {
@@ -40,7 +50,7 @@ constructor(props) {
 					height: 150,
 				}}
 				/>
-				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.state.wine.address} </Text>
+				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.state.wine.address} onPress={()=>this.state.wine.goToMap()}/>
 				<Image 
 				source={this.state.wine.stamp}
 				style={{

@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, Linking, Platform } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 export default class MapScreen extends Component {
+	goToMap() {
+		if (Platform.OS === 'ios') {
+			Linking.openURL('http://maps.apple.com/?daddr=287+Judson+Ave,Mystic,Connecticut')
+		}
+		else {
+			Linking.openURL('geo:287+Judson+Ave%2C+Mystic%2C+CT')
+		}
+	}
 	render() {
 			const {navigate} = this.props.navigation;
 		return(
@@ -17,8 +25,8 @@ export default class MapScreen extends Component {
 							alignItems: 'center',}}>
 				</Image>
 				<Button
-					title="Back"
-					onPress={()=>navigate('Home')}/>
+					title="Test"
+					onPress={()=>this.goToMap()}/>
 			</View>
 			)
 	}

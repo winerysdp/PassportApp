@@ -12,30 +12,23 @@ class winery {
 	}
 	goToMap() {
 		if (Platform.OS === 'ios') {
-			Linking.openURL('http://maps.apple.com/?daddr=1355+Boston+Post+Road,Guilford,CT')
+			Linking.openURL('http://maps.apple.com/?daddr=349+Elm+Street,Stonington,CT')
 		}
 		else {
-			Linking.openURL('geo:1355+Boston+Post+Road%2C+Guilford%2C+CT')
+			Linking.openURL('geo:349+Elm+Street%2C+Stonington%2C+CT')
 		}
 	}
 }
 
-var bobsWine = new winery("Arrigoni Winery", require('./assets/wine1.jpg'), "1287 Portland-Cobalt Road, Rte 66, Portland, CT 06480", "Arrigoni Winery is nestled in the fertile Connecticut River Valley, and offers visitors an indoor Tasting Room and seating area with 18 different wines, a relaxing sunset Patio, vineyard-side picnic area and covered/heated Pavilion. After a wine tasting, browse the extensive gift shop and enjoy live music and scenic views of the vineyard. Event space is available year-round for weddings, bridal showers, family reunions and more. Please contact Monica@arrigoniwinery.com to learn more. Bus parking and private event parking available. Visitors are encouraged to bring a picnic. No outside beverages allowed. Open year-round.");
-var joesWine = new winery("Bishop's Orchards Winery", require('./assets/wine2.jpg'), "1355 Boston Post Road, Guilford, CT 06437", "Since 1871, six generations of Bishop's have been serving Connecticut with farm products. Specialty fruit wines created by Bishop’s use our apples, peaches, pears, strawberries, and raspberries. Since the winery’s inception in 2005, we have won over 318 +medals. Outdoor seating overlooking the orchard and prepared foods from our kitchen will add to your experience. We also offer a great selection of Connecticut Farm Wines! From dry to sweet, award–winning wines from other Farm Wineries complements our own wide selection. Our Farm Market, Farm Kitchen, Ice Cream, Pick Your Own and CSA provide you with a great ”local” experience.");
+var name = "Saltwater Farms Vineyard";
+var address = "349 Elm Street, Stonington, CT 06378";
+var description = "Saltwater Farm Vineyard is set on more than 100 panoramic acres - 15 of which are planted with six varieties of grapes - bordered by tidal marshes, coastal waters, and vistas of Long Island Sound, near the historic seaside village of Stonington, Connecticut. The centerpiece of the property, which has a small private airport dating to the late 1930s, is a vintage World War II era vintage airplane hangar that has been converted into a winery, tasting room and event space.";
+var bobsWine = new winery(name, require('./assets/wine3.jpg'), address, description);
 
 export default class wineryScreen extends Component {
 constructor(props) {
 		super(props);
-		this.state = {wine: joesWine,};
-	}
-	changeWinery() {
-		if (this.state.wine == bobsWine) {
-			this.setState({
-				wine: joesWine
-			});
-		} else {
-			this.setState({wine: bobsWine});
-		}
+		this.state = {wine: bobsWine,};
 	}
 	render() {
 		const { navigate } = this.props.navigation;
@@ -54,8 +47,8 @@ constructor(props) {
 					alignItems: 'center',
 					resizeMode: 'contain',
 					resizeMode: 'cover',
-					width: 300,
-					height: 350
+					width: 75,
+					height: 150,
 				}}
 				/>
 				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.state.wine.address} onPress={()=>this.state.wine.goToMap()}/>
@@ -92,7 +85,7 @@ constructor(props) {
 				/>
 				<Button
 					title="View next Winery"
-					onPress={()=>navigate('Brignole')}
+					onPress={()=>navigate('Savino')}
 				/>
 				<Button
 					title="Back to Main Menu"

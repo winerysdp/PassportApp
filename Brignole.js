@@ -10,6 +10,14 @@ class winery {
 		this.info = info;
 		this.stamp = require('./assets/no-stamp.png');
 	}
+	goToMap() {
+		if (Platform.OS === 'ios') {
+			Linking.openURL('http://maps.apple.com/?daddr=103+Hartford+Avenue,East+Granby,CT')
+		}
+		else {
+			Linking.openURL('geo:103+Hartford+Avenue%2C+East+Granby%2C+CT')
+		}
+	}
 }
 
 var bobsWine = new winery("Brignole Vineyards", require('./assets/wine4.jpg'), "103 Hartford Avenue, East Granby, CT 06026", "Newly opened family-owned and operated vineyard and function facility, striving for perfection in a glass! With 8 different wines and more in the making, along with fresh and different options of Sangrias to wine slushies changing seasonally! With weekly live music and gorgeous tasting room, we are sure to please anyone!");
@@ -41,7 +49,7 @@ constructor(props) {
 					height: 350
 				}}
 				/>
-				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.state.wine.address} </Text>
+				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.state.wine.address} onPress={()=>this.state.wine.goToMap()}/>
 				<Image 
 				source={this.state.wine.stamp}
 				style={{
@@ -75,8 +83,12 @@ constructor(props) {
 				/>
 				<Button
 					title="View next Winery"
-					onPress={()=>navigate('Arrigoni')}
+					onPress={()=>navigate('Cassidy')}
 				/>
+				<Button
+					title="Back to Main Menu"
+					onPress={()=>navigate('PassNav')}
+				/>				
 				</ScrollView>
 			</View>
 			

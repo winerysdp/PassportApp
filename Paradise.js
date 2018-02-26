@@ -12,30 +12,23 @@ class winery {
 	}
 	goToMap() {
 		if (Platform.OS === 'ios') {
-			Linking.openURL('http://maps.apple.com/?daddr=1355+Boston+Post+Road,Guilford,CT')
+			Linking.openURL('http://maps.apple.com/?daddr=15+Wind+Swept+Hill+Road,Wallingford,CT')
 		}
 		else {
-			Linking.openURL('geo:1355+Boston+Post+Road%2C+Guilford%2C+CT')
+			Linking.openURL('geo:15+Wind+Swept+Hill+Road%2C+Wallingford%2C+CT')
 		}
 	}
 }
 
-var bobsWine = new winery("Arrigoni Winery", require('./assets/wine1.jpg'), "1287 Portland-Cobalt Road, Rte 66, Portland, CT 06480", "Arrigoni Winery is nestled in the fertile Connecticut River Valley, and offers visitors an indoor Tasting Room and seating area with 18 different wines, a relaxing sunset Patio, vineyard-side picnic area and covered/heated Pavilion. After a wine tasting, browse the extensive gift shop and enjoy live music and scenic views of the vineyard. Event space is available year-round for weddings, bridal showers, family reunions and more. Please contact Monica@arrigoniwinery.com to learn more. Bus parking and private event parking available. Visitors are encouraged to bring a picnic. No outside beverages allowed. Open year-round.");
-var joesWine = new winery("Bishop's Orchards Winery", require('./assets/wine2.jpg'), "1355 Boston Post Road, Guilford, CT 06437", "Since 1871, six generations of Bishop's have been serving Connecticut with farm products. Specialty fruit wines created by Bishop’s use our apples, peaches, pears, strawberries, and raspberries. Since the winery’s inception in 2005, we have won over 318 +medals. Outdoor seating overlooking the orchard and prepared foods from our kitchen will add to your experience. We also offer a great selection of Connecticut Farm Wines! From dry to sweet, award–winning wines from other Farm Wineries complements our own wide selection. Our Farm Market, Farm Kitchen, Ice Cream, Pick Your Own and CSA provide you with a great ”local” experience.");
+var name = "Paradise Hills Vineyard and Winery";
+var address = "15 Wind Swept Hill Road, Wallingford, CT 06492";
+var description = "Family owned and operated since 1997, Paradise is a Tuscan styled winery nestled among 65 picturesque acres of rolling hills along the Washington Trail in Wallingford. The winery, tasting room, and décor instantly transports you to the wine country in Europe: a hand crafted copper bar; chandeliers; soft Italian music playing in the tasting room and under our arched portico. A romantic, intimate setting, Paradise is the year round winery to visit and enjoy some of the finest Connecticut wines. Come summer picnicking or cozy up by the warm winter fire with family and friends. Come to Paradise.";
+var bobsWine = new winery(name, require('./assets/wine3.jpg'), address, description);
 
 export default class wineryScreen extends Component {
 constructor(props) {
 		super(props);
-		this.state = {wine: joesWine,};
-	}
-	changeWinery() {
-		if (this.state.wine == bobsWine) {
-			this.setState({
-				wine: joesWine
-			});
-		} else {
-			this.setState({wine: bobsWine});
-		}
+		this.state = {wine: bobsWine,};
 	}
 	render() {
 		const { navigate } = this.props.navigation;
@@ -54,8 +47,8 @@ constructor(props) {
 					alignItems: 'center',
 					resizeMode: 'contain',
 					resizeMode: 'cover',
-					width: 300,
-					height: 350
+					width: 75,
+					height: 150,
 				}}
 				/>
 				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.state.wine.address} onPress={()=>this.state.wine.goToMap()}/>
@@ -92,7 +85,7 @@ constructor(props) {
 				/>
 				<Button
 					title="View next Winery"
-					onPress={()=>navigate('Brignole')}
+					onPress={()=>navigate('Preston')}
 				/>
 				<Button
 					title="Back to Main Menu"

@@ -12,30 +12,22 @@ class winery {
 	}
 	goToMap() {
 		if (Platform.OS === 'ios') {
-			Linking.openURL('http://maps.apple.com/?daddr=1355+Boston+Post+Road,Guilford,CT')
+			Linking.openURL('http://maps.apple.com/?daddr=99+Lower+Road,East+Canaan,CT')
 		}
 		else {
-			Linking.openURL('geo:1355+Boston+Post+Road%2C+Guilford%2C+CT')
+			Linking.openURL('geo:99+Lower+Road%2C+East+Canaan%2C+CT')
 		}
 	}
 }
-
-var bobsWine = new winery("Arrigoni Winery", require('./assets/wine1.jpg'), "1287 Portland-Cobalt Road, Rte 66, Portland, CT 06480", "Arrigoni Winery is nestled in the fertile Connecticut River Valley, and offers visitors an indoor Tasting Room and seating area with 18 different wines, a relaxing sunset Patio, vineyard-side picnic area and covered/heated Pavilion. After a wine tasting, browse the extensive gift shop and enjoy live music and scenic views of the vineyard. Event space is available year-round for weddings, bridal showers, family reunions and more. Please contact Monica@arrigoniwinery.com to learn more. Bus parking and private event parking available. Visitors are encouraged to bring a picnic. No outside beverages allowed. Open year-round.");
-var joesWine = new winery("Bishop's Orchards Winery", require('./assets/wine2.jpg'), "1355 Boston Post Road, Guilford, CT 06437", "Since 1871, six generations of Bishop's have been serving Connecticut with farm products. Specialty fruit wines created by Bishop’s use our apples, peaches, pears, strawberries, and raspberries. Since the winery’s inception in 2005, we have won over 318 +medals. Outdoor seating overlooking the orchard and prepared foods from our kitchen will add to your experience. We also offer a great selection of Connecticut Farm Wines! From dry to sweet, award–winning wines from other Farm Wineries complements our own wide selection. Our Farm Market, Farm Kitchen, Ice Cream, Pick Your Own and CSA provide you with a great ”local” experience.");
+var name = "Land of Nod";
+var address = "99 Lower Road, East Canaan, CT 06024";
+var description = " The Land of Nod has the proud distinction of being recognized as a National Bicentennial Farm. It is one of the oldest working farms in Connecticut serving the community for over nine generations. The winery lays before the beautiful Canaan Mountain State Reserve Forest beside the Blackberry River. We planted our first vines in 1994 and opened as a production winery in 1998. The tasting room offers a wide selection of grape and fruit wines, from our traditional red and whites to fruity Raspberry, Blueberry-Raspberry Medley, Peach, Winter Pear, and Chocolate Raspberry. We encourage picnicking. See www.landofnodwinery.com for more info.";
+var bobsWine = new winery(name, require('./assets/wine3.jpg'), address, description);
 
 export default class wineryScreen extends Component {
 constructor(props) {
 		super(props);
-		this.state = {wine: joesWine,};
-	}
-	changeWinery() {
-		if (this.state.wine == bobsWine) {
-			this.setState({
-				wine: joesWine
-			});
-		} else {
-			this.setState({wine: bobsWine});
-		}
+		this.state = {wine: bobsWine,};
 	}
 	render() {
 		const { navigate } = this.props.navigation;
@@ -54,8 +46,8 @@ constructor(props) {
 					alignItems: 'center',
 					resizeMode: 'contain',
 					resizeMode: 'cover',
-					width: 300,
-					height: 350
+					width: 75,
+					height: 150,
 				}}
 				/>
 				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.state.wine.address} onPress={()=>this.state.wine.goToMap()}/>
@@ -92,7 +84,7 @@ constructor(props) {
 				/>
 				<Button
 					title="View next Winery"
-					onPress={()=>navigate('Brignole')}
+					onPress={()=>navigate('Lebanon')}
 				/>
 				<Button
 					title="Back to Main Menu"

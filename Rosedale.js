@@ -12,30 +12,23 @@ class winery {
 	}
 	goToMap() {
 		if (Platform.OS === 'ios') {
-			Linking.openURL('http://maps.apple.com/?daddr=1355+Boston+Post+Road,Guilford,CT')
+			Linking.openURL('http://maps.apple.com/?daddr=25+East+Weatogue+Street,Simsbury,CT')
 		}
 		else {
-			Linking.openURL('geo:1355+Boston+Post+Road%2C+Guilford%2C+CT')
+			Linking.openURL('geo:25+East+Weatogue+Street%2C+Simsbury%2C+CT')
 		}
 	}
 }
 
-var bobsWine = new winery("Arrigoni Winery", require('./assets/wine1.jpg'), "1287 Portland-Cobalt Road, Rte 66, Portland, CT 06480", "Arrigoni Winery is nestled in the fertile Connecticut River Valley, and offers visitors an indoor Tasting Room and seating area with 18 different wines, a relaxing sunset Patio, vineyard-side picnic area and covered/heated Pavilion. After a wine tasting, browse the extensive gift shop and enjoy live music and scenic views of the vineyard. Event space is available year-round for weddings, bridal showers, family reunions and more. Please contact Monica@arrigoniwinery.com to learn more. Bus parking and private event parking available. Visitors are encouraged to bring a picnic. No outside beverages allowed. Open year-round.");
-var joesWine = new winery("Bishop's Orchards Winery", require('./assets/wine2.jpg'), "1355 Boston Post Road, Guilford, CT 06437", "Since 1871, six generations of Bishop's have been serving Connecticut with farm products. Specialty fruit wines created by Bishop’s use our apples, peaches, pears, strawberries, and raspberries. Since the winery’s inception in 2005, we have won over 318 +medals. Outdoor seating overlooking the orchard and prepared foods from our kitchen will add to your experience. We also offer a great selection of Connecticut Farm Wines! From dry to sweet, award–winning wines from other Farm Wineries complements our own wide selection. Our Farm Market, Farm Kitchen, Ice Cream, Pick Your Own and CSA provide you with a great ”local” experience.");
+var name = "Rosedale Farms and Vineyards";
+var address = "25 East Weatogue Street, Simsbury, CT 06070";
+var description = "Since 1920, Rosedale has been growing a wide variety of fruits & vegetables, famous for our gourmet sweet corn, heirloom tomatoes and fresh flowers. Since 2000, our vineyard was planted and is now in its 12th vintage. Featuring our award winning wine: Lou’s Red, Farmington River Red, Simsbury Celebration and Three Sisters among other varieties as well. Although NO OUTSIDE FOOD is allowed, we offer farm fresh produce as well as local artisan breads, cheese, crackers and other snack items. We also have desserts: local pies, cookies and bars.";
+var bobsWine = new winery(name, require('./assets/wine3.jpg'), address, description);
 
 export default class wineryScreen extends Component {
 constructor(props) {
 		super(props);
-		this.state = {wine: joesWine,};
-	}
-	changeWinery() {
-		if (this.state.wine == bobsWine) {
-			this.setState({
-				wine: joesWine
-			});
-		} else {
-			this.setState({wine: bobsWine});
-		}
+		this.state = {wine: bobsWine,};
 	}
 	render() {
 		const { navigate } = this.props.navigation;
@@ -54,8 +47,8 @@ constructor(props) {
 					alignItems: 'center',
 					resizeMode: 'contain',
 					resizeMode: 'cover',
-					width: 300,
-					height: 350
+					width: 75,
+					height: 150,
 				}}
 				/>
 				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.state.wine.address} onPress={()=>this.state.wine.goToMap()}/>
@@ -92,7 +85,7 @@ constructor(props) {
 				/>
 				<Button
 					title="View next Winery"
-					onPress={()=>navigate('Brignole')}
+					onPress={()=>navigate('Saltwater')}
 				/>
 				<Button
 					title="Back to Main Menu"

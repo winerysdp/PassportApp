@@ -15,7 +15,7 @@ class winery {
 			Linking.openURL('http://maps.apple.com/?daddr=1287+Portland-Cobalt+Road,Portland,CT')
 		}
 		else {
-			Linking.openURL('geo:287+Judson+Ave%2C+Mystic%2C+CT')
+			Linking.openURL('geo:1287+Portland-Cobalt+Road%2C+Portland%2C+CT')
 		}
 	}
 }
@@ -57,7 +57,6 @@ constructor(props) {
 					height: 350
 				}}
 				/>
-				
 				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.state.wine.address} onPress={()=>this.state.wine.goToMap()}/>
 				<Image 
 				source={this.state.wine.stamp}
@@ -93,6 +92,10 @@ constructor(props) {
 				<Button
 					title="View next Winery"
 					onPress={() => navigate('Bethlehem')}
+				/>
+				<Button
+					title="Back to Main Menu"
+					onPress={()=>navigate('PassNav')}
 				/>
 				</ScrollView>
 			</View>
