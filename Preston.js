@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Platform, Linking } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 class winery {
