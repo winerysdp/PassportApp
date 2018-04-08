@@ -8,7 +8,9 @@ class winery {
 		this.pic = picture;
 		this.address = address;
 		this.info = info;
-		this.stamp = require('./assets/no-stamp.png');
+		this.stamp = require('./assets/Stamp.png');
+		this.noStamp = require('./assets/no-stamp.png');
+		this.stamped = false;
 	}
 	goToMap() {
 		if (Platform.OS === 'ios') {
@@ -16,6 +18,44 @@ class winery {
 		}
 		else {
 			Linking.openURL('geo:1287+Portland-Cobalt+Road%2C+Portland%2C+CT')
+		}
+	}
+	displayStamp() {
+		if (this.stamped) {
+			return ( 
+				<View>
+				<Image 
+				source={this.stamp}
+				style={{
+					marginTop: 20,
+					justifyContent: 'center',
+					alignItems: 'center',
+					resizeMode: 'contain',
+					resizeMode: 'cover',
+					width: 75,
+					height: 75,
+				}}
+				/>
+				</View>
+			);
+		}
+		else {
+			return(
+				<View>
+				<Image 
+					source={this.noStamp}
+					style={{
+						marginTop: 20,
+						justifyContent: 'center',
+						alignItems: 'center',
+						resizeMode: 'contain',
+						resizeMode: 'cover',
+						width: 75,
+						height: 75,
+					}}
+				/>
+				</View>
+			);
 		}
 	}
 }
@@ -57,19 +97,9 @@ constructor(props) {
 					height: 350
 				}}
 				/>
+
 				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.state.wine.address} onPress={()=>this.state.wine.goToMap()}/>
-				<Image 
-				source={this.state.wine.stamp}
-				style={{
-					marginTop: 20,
-					justifyContent: 'center',
-					alignItems: 'center',
-					resizeMode: 'contain',
-					resizeMode: 'cover',
-					width: 75,
-					height: 75,
-				}}
-				/>
+				{this.state.wine.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.state.wine.info} </Text>
 				</View>
 				<Text style={{fontSize: 20, textAlign: 'center', color: '#14487a'}}>

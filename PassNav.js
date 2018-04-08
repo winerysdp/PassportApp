@@ -15,6 +15,11 @@ export default class passNav extends Component {
 	<View style={styles.book}>
 		<ScrollView contentContainerStyle={styles.contentContainer}>
 		<Text style={{fontSize: 30, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> My Passport </Text>
+		<Button
+				style={styles.button}
+				onPress={() => navigate('QRScanner')}
+				title="QR Scanner"
+				/>
 		<Text style={{fontSize: 16, textAlign: 'center', color: '#4b85bc'}}> Click on winery names below to navigate to corresponding Winery pages </Text>
 		<View style={styles.row}>
 			<Image
