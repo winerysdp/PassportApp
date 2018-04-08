@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { AppRegistry, Alert, Linking, Dimensions, LayoutAnimation, Text, View, StatusBar, StyleSheet, TouchableOpacity, TouchableHighlight, Image} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { BarCodeScanner, Permissions } from 'expo';
-import Arrigoni from './Arrigoni.js';
 
+var stamped = false;
+export {stamped};
 export default class qrScanner extends Component {
   state = {
     hasCameraPermission: null,
@@ -73,7 +74,8 @@ export default class qrScanner extends Component {
   };
   jumpToWinery() {
     const { navigate } = this.props.navigation;
-    Arrigoni.state.wine.stamped = true;
+    global.AStamped = true;
+    stamped = true;
     navigate('Arrigoni');
 
   }
@@ -88,7 +90,7 @@ export default class qrScanner extends Component {
       <View style = {styles.bottomBar}>
         <Text style = {{color: 'white', fontSize: 18,}}> Press to Stamp </Text>
         <TouchableHighlight 
-        onPress = {() => this.jumpToWinery(0)}>
+        onPress = {() => this.jumpToWinery()}>
         <Image
           style={{
             resizeMode: 'contain',
