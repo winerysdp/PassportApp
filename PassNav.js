@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, TouchableOpacity } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, TouchableOpacity, AsyncStorage } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 export default class passNav extends Component {
@@ -19,6 +19,11 @@ export default class passNav extends Component {
 				style={styles.button}
 				onPress={() => navigate('QRScanner')}
 				title="QR Scanner"
+				/>
+		<Button 
+				style={styles.button}
+				onPress={() => AsyncStorage.setItem('stamped', JSON.stringify(false))}
+				title="Reset stamps"
 				/>
 		<Text style={{fontSize: 16, textAlign: 'center', color: '#4b85bc'}}> Click on winery names below to navigate to corresponding Winery pages </Text>
 		<View style={styles.row}>
@@ -329,7 +334,7 @@ export default class passNav extends Component {
 				<Button
 					style={styles.button}
 					onPress={() => navigate('Jerram')}
-					title="Jerraam Winery"
+					title="Jerram Winery"
 				/>
 		
 		</View>			
@@ -602,10 +607,31 @@ export default class passNav extends Component {
 				<Button
 					style={styles.button}
 					onPress={() => navigate('Saltwater')}
+					title="Saltwate Vineyards"
+				/>
+		
+		</View>	
+
+		<View style={styles.row}>
+			<Image 
+				source={require('./assets/Brignole.jpg')}
+				style={styles.navImage}
+			/>
+			
+			
+			<Image 
+				source={require('./assets/no-stamp.png')}
+				style={styles.navImage}
+			/>
+		</View>
+		<View style = {styles.row}>
+				<Button
+					style={styles.button}
+					onPress={() => navigate('Savino')}
 					title="Savino Vineyards"
 				/>
 		
-		</View>			
+		</View>		
 		
 		<View style={styles.row}>
 			<Image 
@@ -644,7 +670,7 @@ export default class passNav extends Component {
 				<Button
 					style={styles.button}
 					onPress={() => navigate('Staehly')}
-					title="Staaehly Farm Winery"
+					title="Staehly Farm Winery"
 				/>
 		
 		</View>		

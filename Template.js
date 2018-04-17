@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import {stamped} from './QRScanner.js';
 
-class winery {
-	constructor(name, picture, address, info) {
-		this.name = name;
-		this.pic = picture;
-		this.address = address;
-		this.info = info;
-		this.stamp = require('./assets/no-stamp.png');
+export default class Template extends Component {
+constructor(props) {
+		super(props);
+		this.state = {text: ""};
+		this.name = "Vineyard Name";
+		this.pic = require('./assets/wine3.jpg');
+		this.address = "Vineyard Address";
+		this.info = "Vineyard Description";
+		this.stamp = require('./assets/Stamp.png');
+		this.noStamp = require('./assets/no-stamp.png');
 	}
 	goToMap() {
 		if (Platform.OS === 'ios') {
@@ -18,41 +22,12 @@ class winery {
 			//Linking.openURL('geo:848+Rte+171%2C+Woodstock%2C+CT')
 		}
 	}
-}
-var name = "Vineyard Name";
-var address = "Vineyard Address";
-var description = "Vineyard Description";
-var bobsWine = new winery(name, require('./assets/wine3.jpg'), address, description);
-
-export default class wineryScreen extends Component {
-constructor(props) {
-		super(props);
-		this.state = {wine: bobsWine,};
-	}
-	render() {
-		const { navigate } = this.props.navigation;
-		return(
-			<View style={styles.book}>
-			<ScrollView contentContainerStyle={styles.contentContainer}>
-				<View style = {{
-					alignItems: 'center',
-				}}>
-				<Text style = {{fontSize: 32, color: '#14487a', fontWeight: 'bold', textAlign: 'center'}}> {this.state.wine.name} </Text>
+	displayStamp() {
+		if (stamped[0]) {
+			return ( 
+				<View>
 				<Image 
-				source={this.state.wine.pic}
-				style={{
-					marginTop: 20,
-					justifyContent: 'center',
-					alignItems: 'center',
-					resizeMode: 'contain',
-					resizeMode: 'cover',
-					width: 75,
-					height: 150,
-				}}
-				/>
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.state.wine.address} onPress={()=>this.state.wine.goToMap()}/>
-				<Image 
-				source={this.state.wine.stamp}
+				source={this.stamp}
 				style={{
 					marginTop: 20,
 					justifyContent: 'center',
@@ -63,7 +38,53 @@ constructor(props) {
 					height: 75,
 				}}
 				/>
-				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.state.wine.info} </Text>
+				</View>
+			);
+		}
+		else {
+			return(
+				<View>
+				<Image 
+					source={this.noStamp}
+					style={{
+						marginTop: 20,
+						justifyContent: 'center',
+						alignItems: 'center',
+						resizeMode: 'contain',
+						resizeMode: 'cover',
+						width: 75,
+						height: 75,
+					}}
+				/>
+				</View>
+			);
+		}
+	}
+	render() {
+		const { navigate } = this.props.navigation;
+		return(
+			<View style={styles.book}>
+			<ScrollView contentContainerStyle={styles.contentContainer}>
+				<View style = {{
+					alignItems: 'center',
+				}}>
+				<Button style = {{fontSize: 12, color: 'blue', textAlign: 'Left'}} title = "< Back to Main Menu" onPress={()=> navigate('PassNav')}/>
+				<Text style = {{fontSize: 32, color: '#14487a', fontWeight: 'bold', textAlign: 'center'}}> {this.name} </Text>
+				<Image 
+				source={this.pic}
+				style={{
+					//marginTop: 20,
+					justifyContent: 'center',
+					alignItems: 'center',
+					resizeMode: 'contain',
+					width: 300,
+					height: 350
+				}}
+				/>
+
+				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				{this.displayStamp()}
+				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
 				<Text style={{fontSize: 20, textAlign: 'center', color: '#14487a'}}>
 					Notes
@@ -82,9 +103,10 @@ constructor(props) {
 					onChangeText={(text) => this.setState({text})}
 					value={this.state.text}
 				/>
+				{/*<Button title="View next Winery" onPress={() => navigate('Walker')}/>*/}
 				<Button
-					title="View next Winery"
-					onPress={()=>navigate('Next Winery')}
+					title="Back to Main Menu"
+					onPress={()=>navigate('PassNav')}
 				/>
 				</ScrollView>
 			</View>

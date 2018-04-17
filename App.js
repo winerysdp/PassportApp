@@ -85,8 +85,8 @@ const App = StackNavigator({
 	Walker: {screen: Walker},
 	WhiteSilo: {screen: WhiteSilo},
 	PassNav: { screen: passNav},
-}
-//,{headerMode: 'None'}
+}, 
+{headerMode: 'None'}
 );
 
 export default App;
