@@ -1,51 +1,33 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Platform, Linking } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import {stamped} from './QRScanner.js';
 
-class winery {
-	constructor(name, picture, address, info) {
-		this.name = name;
-		this.pic = picture;
-		this.address = address;
-		this.info = info;
-		this.stamp = require('./assets/no-stamp.png');
-	}
-}
-
-var name = "Jerram Winery";
-var address = "535 Town Hill Road, New Hartford, CT 06057";
-var description = "Located in the historic Town Hill section of New Hartford, we are a boutique winery with original vines planted since 1982. Enjoy tastings, tours, picnics, hiking, and art from Connecticut artists in our gallery. We host private parties and celebrations April through October. Annual Spring Wine Fest in June and Harvest Festival in October.";
-var bobsWine = new winery(name, require('./assets/wine3.jpg'), address, description);
-
-export default class wineryScreen extends Component {
+export default class Jerram extends Component {
 constructor(props) {
 		super(props);
-		this.state = {wine: bobsWine,};
+		this.state = {text: ""};
+		this.name = "Jerram Winery";
+		this.pic = require('./assets/JerramWine.jpg');
+		this.address = "535 Town Hill Road, New Hartford, CT 06057";
+		this.info = "Located in the historic Town Hill section of New Hartford, we are a boutique winery with original vines planted since 1982. Enjoy tastings, tours, picnics, hiking, and art from Connecticut artists in our gallery. We host private parties and celebrations April through October. Annual Spring Wine Fest in June and Harvest Festival in October.";
+		this.stamp = require('./assets/Stamp.png');
+		this.noStamp = require('./assets/no-stamp.png');
 	}
-	render() {
-		const { navigate } = this.props.navigation;
-		return(
-			<View style={styles.book}>
-			<ScrollView contentContainerStyle={styles.contentContainer}>
-				<View style = {{
-					alignItems: 'center',
-				}}>
-				<Text style = {{fontSize: 32, color: '#14487a', fontWeight: 'bold', textAlign: 'center'}}> {this.state.wine.name} </Text>
+	goToMap() {
+		if (Platform.OS === 'ios') {
+			Linking.openURL('http://maps.apple.com/?daddr=535+Town+Hill+Road,New+Hartford,CT')
+		}
+		else {
+			Linking.openURL('geo:535+Town+Hill+Road%2C+New+Hartford%2C+CT')
+		}
+	}
+	displayStamp() {
+		if (stamped[14]) {
+			return ( 
+				<View>
 				<Image 
-				source={this.state.wine.pic}
-				style={{
-					marginTop: 20,
-					justifyContent: 'center',
-					alignItems: 'center',
-					resizeMode: 'contain',
-					resizeMode: 'cover',
-					width: 75,
-					height: 150,
-				}}
-				/>
-				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.state.wine.address} </Text>
-				<Image 
-				source={this.state.wine.stamp}
+				source={this.stamp}
 				style={{
 					marginTop: 20,
 					justifyContent: 'center',
@@ -56,7 +38,53 @@ constructor(props) {
 					height: 75,
 				}}
 				/>
-				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.state.wine.info} </Text>
+				</View>
+			);
+		}
+		else {
+			return(
+				<View>
+				<Image 
+					source={this.noStamp}
+					style={{
+						marginTop: 20,
+						justifyContent: 'center',
+						alignItems: 'center',
+						resizeMode: 'contain',
+						resizeMode: 'cover',
+						width: 75,
+						height: 75,
+					}}
+				/>
+				</View>
+			);
+		}
+	}
+	render() {
+		const { navigate } = this.props.navigation;
+		return(
+			<View style={styles.book}>
+			<ScrollView contentContainerStyle={styles.contentContainer}>
+				<View style = {{
+					alignItems: 'center',
+				}}>
+				<Button style = {{fontSize: 12, color: 'blue', textAlign: 'Left'}} title = "< Back to Main Menu" onPress={()=> navigate('PassNav')}/>
+				<Text style = {{fontSize: 32, color: '#14487a', fontWeight: 'bold', textAlign: 'center'}}> {this.name} </Text>
+				<Image 
+				source={this.pic}
+				style={{
+					//marginTop: 20,
+					justifyContent: 'center',
+					alignItems: 'center',
+					resizeMode: 'contain',
+					width: 300,
+					height: 350
+				}}
+				/>
+
+				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				{this.displayStamp()}
+				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
 				<Text style={{fontSize: 20, textAlign: 'center', color: '#14487a'}}>
 					Notes
@@ -75,10 +103,7 @@ constructor(props) {
 					onChangeText={(text) => this.setState({text})}
 					value={this.state.text}
 				/>
-				<Button
-					title="View next Winery"
-					onPress={()=>navigate('Jonathan')}
-				/>
+				{/*<Button title="View next Winery" onPress={() => navigate('Jonathan')}/>*/}
 				<Button
 					title="Back to Main Menu"
 					onPress={()=>navigate('PassNav')}

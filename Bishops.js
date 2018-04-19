@@ -1,58 +1,33 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import {stamped} from './QRScanner.js';
 
-class winery {
-	constructor(name, picture, address, info) {
-		this.name = name;
-		this.pic = picture;
-		this.address = address;
-		this.info = info;
-		this.stamp = require('./assets/no-stamp.png');
-	}
-}
-
-var bobsWine = new winery("Arrigoni Winery", require('./assets/wine1.jpg'), "1287 Portland-Cobalt Road, Rte 66, Portland, CT 06480", "Arrigoni Winery is nestled in the fertile Connecticut River Valley, and offers visitors an indoor Tasting Room and seating area with 18 different wines, a relaxing sunset Patio, vineyard-side picnic area and covered/heated Pavilion. After a wine tasting, browse the extensive gift shop and enjoy live music and scenic views of the vineyard. Event space is available year-round for weddings, bridal showers, family reunions and more. Please contact Monica@arrigoniwinery.com to learn more. Bus parking and private event parking available. Visitors are encouraged to bring a picnic. No outside beverages allowed. Open year-round.");
-var joesWine = new winery("Bishop's Orchards Winery", require('./assets/wine2.jpg'), "1355 Boston Post Road, Guilford, CT 06437", "Since 1871, six generations of Bishop's have been serving Connecticut with farm products. Specialty fruit wines created by Bishop’s use our apples, peaches, pears, strawberries, and raspberries. Since the winery’s inception in 2005, we have won over 318 +medals. Outdoor seating overlooking the orchard and prepared foods from our kitchen will add to your experience. We also offer a great selection of Connecticut Farm Wines! From dry to sweet, award–winning wines from other Farm Wineries complements our own wide selection. Our Farm Market, Farm Kitchen, Ice Cream, Pick Your Own and CSA provide you with a great ”local” experience.");
-
-export default class wineryScreen extends Component {
+export default class Bishops extends Component {
 constructor(props) {
 		super(props);
-		this.state = {wine: joesWine,};
+		this.state = {text: ""};
+		this.name = "Bishop's Orchards Winery";
+		this.pic = require('./assets/BishopsWine.jpg');
+		this.address = "1355 Boston Post Road, Guilford, CT 06437";
+		this.info = "Since 1871, six generations of Bishop's have been serving Connecticut with farm products. Specialty fruit wines created by Bishop’s use our apples, peaches, pears, strawberries, and raspberries. Since the winery’s inception in 2005, we have won over 318 +medals. Outdoor seating overlooking the orchard and prepared foods from our kitchen will add to your experience. We also offer a great selection of Connecticut Farm Wines! From dry to sweet, award–winning wines from other Farm Wineries complements our own wide selection. Our Farm Market, Farm Kitchen, Ice Cream, Pick Your Own and CSA provide you with a great ”local” experience.";
+		this.stamp = require('./assets/Stamp.png');
+		this.noStamp = require('./assets/no-stamp.png');
 	}
-	changeWinery() {
-		if (this.state.wine == bobsWine) {
-			this.setState({
-				wine: joesWine
-			});
-		} else {
-			this.setState({wine: bobsWine});
+	goToMap() {
+		if (Platform.OS === 'ios') {
+			Linking.openURL('http://maps.apple.com/?daddr=1355+Boston+Post+Road,Guilford,CT')
+		}
+		else {
+			Linking.openURL('geo:1355+Boston+Post+Road%2C+Guilford%2C+CT')
 		}
 	}
-	render() {
-		const { navigate } = this.props.navigation;
-		return(
-			<View style={styles.book}>
-			<ScrollView contentContainerStyle={styles.contentContainer}>
-				<View style = {{
-					alignItems: 'center',
-				}}>
-				<Text style = {{fontSize: 32, color: '#14487a', fontWeight: 'bold', textAlign: 'center'}}> {this.state.wine.name} </Text>
+	displayStamp() {
+		if (stamped[2]) {
+			return ( 
+				<View>
 				<Image 
-				source={this.state.wine.pic}
-				style={{
-					marginTop: 20,
-					justifyContent: 'center',
-					alignItems: 'center',
-					resizeMode: 'contain',
-					resizeMode: 'cover',
-					width: 300,
-					height: 350
-				}}
-				/>
-				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.state.wine.address} </Text>
-				<Image 
-				source={this.state.wine.stamp}
+				source={this.stamp}
 				style={{
 					marginTop: 20,
 					justifyContent: 'center',
@@ -63,7 +38,53 @@ constructor(props) {
 					height: 75,
 				}}
 				/>
-				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.state.wine.info} </Text>
+				</View>
+			);
+		}
+		else {
+			return(
+				<View>
+				<Image 
+					source={this.noStamp}
+					style={{
+						marginTop: 20,
+						justifyContent: 'center',
+						alignItems: 'center',
+						resizeMode: 'contain',
+						resizeMode: 'cover',
+						width: 75,
+						height: 75,
+					}}
+				/>
+				</View>
+			);
+		}
+	}
+	render() {
+		const { navigate } = this.props.navigation;
+		return(
+			<View style={styles.book}>
+			<ScrollView contentContainerStyle={styles.contentContainer}>
+				<View style = {{
+					alignItems: 'center',
+				}}>
+				<Button style = {{fontSize: 12, color: 'blue', textAlign: 'Left'}} title = "< Back to Main Menu" onPress={()=> navigate('PassNav')}/>
+				<Text style = {{fontSize: 32, color: '#14487a', fontWeight: 'bold', textAlign: 'center'}}> {this.name} </Text>
+				<Image 
+				source={this.pic}
+				style={{
+					//marginTop: 20,
+					justifyContent: 'center',
+					alignItems: 'center',
+					resizeMode: 'contain',
+					width: 300,
+					height: 350
+				}}
+				/>
+
+				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				{this.displayStamp()}
+				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
 				<Text style={{fontSize: 20, textAlign: 'center', color: '#14487a'}}>
 					Notes
@@ -82,10 +103,7 @@ constructor(props) {
 					onChangeText={(text) => this.setState({text})}
 					value={this.state.text}
 				/>
-				<Button
-					title="View next Winery"
-					onPress={()=>navigate('Brignole')}
-				/>
+				{/*<Button title="View next Winery" onPress={() => navigate('Brignole')}/>*/}
 				<Button
 					title="Back to Main Menu"
 					onPress={()=>navigate('PassNav')}

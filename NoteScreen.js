@@ -13,6 +13,10 @@ export default class noteScreen extends Component {
 		const { navigate } = this.props.navigation;
 	return (
 		<View>
+        	<Button 
+        		title= "Go to product page"
+        		onPress={() => navigate('Product')}
+        		/>
         	<Text style={{fontSize: 20, textAlign: 'center'}}>
         		Notes
         	</Text>
@@ -24,6 +28,7 @@ export default class noteScreen extends Component {
 				}}
 				editable = {true}
 				multiline = {true}
+				//onSubmitEditing = {Keyboard.dismiss}
 				numberofLines = {4}
 				onChangeText={(text) => this.setState({text})}
 				value={this.state.text}

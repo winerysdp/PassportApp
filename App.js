@@ -41,9 +41,11 @@ import Walker from "./Walker.js";
 import WhiteSilo from "./WhiteSilo.js";
 import passCover from './PassCover.js';
 import passNav from './PassNav.js';
+import qrScanner from './QRScanner.js';
 
 const App = StackNavigator({
 	Passport: { screen: passCover},
+	QRScanner: { screen: qrScanner},
 	Note: { screen: noteScreen},
 	Arrigoni: { screen: Arrigoni},
 	Bishops: { screen: Bishops},
@@ -83,6 +85,8 @@ const App = StackNavigator({
 	Walker: {screen: Walker},
 	WhiteSilo: {screen: WhiteSilo},
 	PassNav: { screen: passNav},
-});
+}, 
+{headerMode: 'None'}
+);
 
 export default App;

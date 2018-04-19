@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, TouchableOpacity } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, TouchableOpacity, AsyncStorage } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 export default class passNav extends Component {
@@ -15,6 +15,16 @@ export default class passNav extends Component {
 	<View style={styles.book}>
 		<ScrollView contentContainerStyle={styles.contentContainer}>
 		<Text style={{fontSize: 30, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> My Passport </Text>
+		<Button
+				style={styles.button}
+				onPress={() => navigate('QRScanner')}
+				title="QR Scanner"
+				/>
+		<Button 
+				style={styles.button}
+				onPress={() => AsyncStorage.setItem('stamped', JSON.stringify(false))}
+				title="Reset stamps"
+				/>
 		<Text style={{fontSize: 16, textAlign: 'center', color: '#4b85bc'}}> Click on winery names below to navigate to corresponding Winery pages </Text>
 		<View style={styles.row}>
 			<Image
@@ -23,10 +33,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 			<Button
@@ -43,10 +50,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -63,10 +67,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -84,10 +85,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -105,10 +103,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -126,10 +121,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -142,15 +134,12 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Chamard.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -168,10 +157,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -184,15 +170,12 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Dalice.jpg')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -205,15 +188,12 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/DiGrazia.jpg')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -226,15 +206,12 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Gouveia.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -252,10 +229,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -268,15 +242,12 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/HawkRidge.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -289,15 +260,12 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Holmberg.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -310,21 +278,18 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Hopkins.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
 					style={styles.button}
 					onPress={() => navigate('Jerram')}
-					title="Jerraam Winery"
+					title="Jerram Winery"
 				/>
 		
 		</View>			
@@ -336,10 +301,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -352,15 +314,12 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/JonathanEdwards.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -373,15 +332,12 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Jones.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -399,10 +355,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -420,10 +373,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -441,10 +391,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -457,15 +404,12 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Maugle.jpg')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -483,10 +427,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -499,15 +440,12 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/ParadiseHills.jpg')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -520,15 +458,12 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Preston.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -541,15 +476,12 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Priam.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -562,15 +494,12 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Rosabianca.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -588,31 +517,43 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
 					style={styles.button}
 					onPress={() => navigate('Saltwater')}
+					title="Saltwate Vineyards"
+				/>
+		
+		</View>	
+
+		<View style={styles.row}>
+			<Image 
+				source={require('./assets/Saltwater.png')}
+				style={styles.navImage}
+			/>
+			
+			
+
+		</View>
+		<View style = {styles.row}>
+				<Button
+					style={styles.button}
+					onPress={() => navigate('Savino')}
 					title="Savino Vineyards"
 				/>
 		
-		</View>			
+		</View>		
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Savino.jpg')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -625,36 +566,30 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/SharpeHill.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
 					style={styles.button}
 					onPress={() => navigate('Staehly')}
-					title="Staaehly Farm Winery"
+					title="Staehly Farm Winery"
 				/>
 		
 		</View>		
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Staehly.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -667,15 +602,12 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Stonington.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -693,10 +625,7 @@ export default class passNav extends Component {
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -709,15 +638,12 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/SunsetMeadow.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -730,15 +656,12 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/TaylorBrooke.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -751,15 +674,12 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/WalkerRoad.png')}
 				style={styles.navImage}
 			/>
 			
 			
-			<Image 
-				source={require('./assets/no-stamp.png')}
-				style={styles.navImage}
-			/>
+
 		</View>
 		<View style = {styles.row}>
 				<Button
@@ -769,7 +689,12 @@ export default class passNav extends Component {
 				/>
 		
 		</View>	
-		
+		<View style={styles.row}>
+			<Image 
+				source={require('./assets/Brignole.jpg')}
+				style={styles.navImage}
+			/>
+		</View>
 		</ScrollView>
 	</View>
 	);
@@ -788,9 +713,8 @@ const styles = StyleSheet.create({
   },
   navImage: {
 	marginTop: 10,
-	resizeMode: 'contain',
-	resizeMode: 'cover',
-	width: 100,
+	resizeMode: 'stretch',
+	width: 150,
 	height: 100,
   },
   row: {
