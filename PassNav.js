@@ -20,6 +20,11 @@ export default class passNav extends Component {
 				onPress={() => navigate('QRScanner')}
 				title="QR Scanner"
 				/>
+		<Button
+				style={styles.button}
+				onPress={() => navigate('ProfilePage')}
+				title="Profile"
+				/>
 		<Button 
 				style={styles.button}
 				onPress={() => AsyncStorage.setItem('stamped', JSON.stringify(false))}

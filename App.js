@@ -27,6 +27,7 @@ import Miranda from "./Miranda.js";
 import Paradise from "./Paradise.js";
 import Preston from "./Preston.js";
 import Priam from "./Priam.js";
+import ProfilePage from "./ProfilePage.js";
 import Rosabianca from "./Rosabianca.js";
 import Rosedale from "./Rosedale.js";
 import Saltwater from "./Saltwater.js";
@@ -72,6 +73,7 @@ const App = StackNavigator({
 	Paradise: {screen: Paradise},
 	Preston: {screen: Preston},
 	Priam: {screen: Priam},
+	ProfilePage: {screen: ProfilePage},
 	Rosabianca: {screen: Rosabianca},
 	Rosedale: {screen: Rosedale},
 	Saltwater: {screen: Saltwater},

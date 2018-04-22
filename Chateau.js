@@ -7,8 +7,8 @@ export default class Miranda extends Component {
 constructor(props) {
 		super(props);
 		this.state = {text: ""};
-		this.name = "Miranda Vineyard";
-		this.pic = require('./assets/MirandaWine.jpg');
+		this.name = "Chateau le Gari";
+		this.pic = require('./assets/wine3.jpg');
 		this.address = "42 Ives Road, Goshen, CT 06756";
 		this.info = "Our airy tasting room and large deck are perfect places to enjoy a glass of wine. Small batches of wine by vintner Manny Miranda follows his motto: “Create Old World wines using modern techniques for local connoisseurs.” Wine is available by the glass or bottle, picnics are welcome. Check website for events.";
 		this.stamp = require('./assets/Stamp.png');
