@@ -3,27 +3,27 @@ import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, K
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
-export default class Miranda extends Component {
+export default class Chateau extends Component {
 constructor(props) {
 		super(props);
 		this.state = {text: ""};
 		this.name = "Chateau le Gari";
-		this.pic = require('./assets/wine3.jpg');
-		this.address = "42 Ives Road, Goshen, CT 06756";
-		this.info = "Our airy tasting room and large deck are perfect places to enjoy a glass of wine. Small batches of wine by vintner Manny Miranda follows his motto: “Create Old World wines using modern techniques for local connoisseurs.” Wine is available by the glass or bottle, picnics are welcome. Check website for events.";
+		this.pic = require('./assets/ChateauWine.jpg');
+		this.address = "303 South Main Street, Marlborough, CT 06447";
+		this.info = "860-467- 6296. Open Friday, Saturday, Sunday year-round, 12-5pm. Check Facebook/website for additional hours.  Groups of 10 or more by reservation only.";
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
 	goToMap() {
 		if (Platform.OS === 'ios') {
-			Linking.openURL('http://maps.apple.com/?daddr=42+Ives+Road,Goshen,CT')
+			Linking.openURL('http://maps.apple.com/?daddr=303+South+Main+Street,Marlborough,CT')
 		}
 		else {
-			Linking.openURL('geo:42+Ives+Road%2C+Goshen%2C+CT')
+			Linking.openURL('geo:303+South+Main+Street%2C+Marlborough%2C+CT')
 		}
 	}
 	displayStamp() {
-		if (stamped[21]) {
+		if (stamped[37]) {
 			return ( 
 				<View>
 				<Image 
@@ -96,7 +96,7 @@ constructor(props) {
 						fontSize: 15,
 						backgroundColor: 'white',
 					}}
-					
+					placeholder = ""
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}

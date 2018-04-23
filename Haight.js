@@ -8,7 +8,7 @@ constructor(props) {
 		super(props);
 		this.state = {text: ""};
 		this.name = "Haight-Brown Vineyard";
-		this.pic = require('./assets/ArrigoniWine.jpg');
+		this.pic = require('./assets/HaightWine.jpg');
 		this.address = "29 Chestnut Hill Road, Litchfield, CT 06759";
 		this.info = "Connecticut’s oldest vineyard located on historic Chestnut Hill Road in Litchfield. Enjoy the rustic setting amongst the natural beauty of the Litchfield Hills.";
 		this.stamp = require('./assets/Stamp.png');

@@ -8,7 +8,7 @@ constructor(props) {
 		super(props);
 		this.state = {text: ""};
 		this.name = "DiGrazia Vineyards";
-		this.pic = require('./assets/wine3.jpg');
+		this.pic = require('./assets/DiGraziaWine.jpg');
 		this.address = "131 Tower Road, Brookfield, CT 06804";
 		this.info = "We personally invite you to spend an afternoon at our winery located at 131 Tower Road, in historic Brookfield, Connecticut.  Spring, Summer and Fall hours 11am-5pm every day. We provide wine tastings ($9.40), free facility tours, and have a lovely picnic are with outside food permitted. We carry white red, blush, fruit, port, spiced, table and dessert wines of a unique variety, all resulting from 36 years in business. We hope to see you soon and know you will love our wines!";
 		this.stamp = require('./assets/Stamp.png');

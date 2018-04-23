@@ -8,7 +8,7 @@ constructor(props) {
 		super(props);
 		this.state = {text: ""};
 		this.name = "Land of Nod";
-		this.pic = require('./assets/wine3.jpg');
+		this.pic = require('./assets/LandOfNodWine.jpg');
 		this.address = "99 Lower Road, East Canaan, CT 06024";
 		this.info = " The Land of Nod has the proud distinction of being recognized as a National Bicentennial Farm. It is one of the oldest working farms in Connecticut serving the community for over nine generations. The winery lays before the beautiful Canaan Mountain State Reserve Forest beside the Blackberry River. We planted our first vines in 1994 and opened as a production winery in 1998. The tasting room offers a wide selection of grape and fruit wines, from our traditional red and whites to fruity Raspberry, Blueberry-Raspberry Medley, Peach, Winter Pear, and Chocolate Raspberry. We encourage picnicking. See www.landofnodwinery.com for more info.";
 		this.stamp = require('./assets/Stamp.png');

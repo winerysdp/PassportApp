@@ -8,7 +8,7 @@ constructor(props) {
 		super(props);
 		this.state = {text: ""};
 		this.name = "White Silo Winery";
-		this.pic = require('./assets/wine3.jpg');
+		this.pic = require('./assets/WhiteSiloWine.jpg');
 		this.address = "32 Route 37 East, Sherman, CT 06784";
 		this.info = "A family owned winery producing award winning grape and fruit wines. The 18th century dairy barn has been renovated to create an elegant tasting room. Enjoy your wine and picnic lunch on our new outdoor patio overlooking the farm and vineyard. See our website for information about annual festivals, special events, and private event information. We are handicap accessible.";
 		this.stamp = require('./assets/Stamp.png');

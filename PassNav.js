@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, TouchableOpacity, AsyncStorage } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
+
 export default class passNav extends Component {
 	constructor(props) {
 		super(props);
@@ -103,7 +104,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/CassidyHill.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -121,7 +122,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Chamard.png')}
 				style={styles.navImage}
 			/>
 			
@@ -136,10 +137,26 @@ export default class passNav extends Component {
 				/>
 		
 		</View>	
-
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Chamard.png')}
+				source={require('./assets/Chateau.png')}
+				style={styles.navImage}
+			/>
+			
+			
+
+		</View>
+		<View style = {styles.row}>
+				<Button
+					style={styles.button}
+					onPress={() => navigate('Chateau')}
+					title="Chateau Le' Gari'"
+				/>
+		
+		</View>
+		<View style={styles.row}>
+			<Image 
+				source={require('./assets/CTValley.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -157,7 +174,7 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Dalice.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -175,7 +192,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Dalice.jpg')}
+				source={require('./assets/DiGrazia.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -193,7 +210,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/DiGrazia.jpg')}
+				source={require('./assets/Gouveia.png')}
 				style={styles.navImage}
 			/>
 			
@@ -211,7 +228,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Gouveia.png')}
+				source={require('./assets/Haight.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -229,7 +246,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/HawkRidge.png')}
 				style={styles.navImage}
 			/>
 			
@@ -244,10 +261,44 @@ export default class passNav extends Component {
 				/>
 		
 		</View>	
+				<View style={styles.row}>
+			<Image 
+				source={require('./assets/Heartstone.jpg')}
+				style={styles.navImage}
+			/>
+			
+			
+
+		</View>
+		<View style = {styles.row}>
+				<Button
+					style={styles.button}
+					onPress={() => navigate('Heartstone')}
+					title="Heartstone Farm and Winery"
+				/>
+		
+		</View>
+				<View style={styles.row}>
+			<Image 
+				source={require('./assets/Hillyland.jpg')}
+				style={styles.navImage}
+			/>
+			
+			
+
+		</View>
+		<View style = {styles.row}>
+				<Button
+					style={styles.button}
+					onPress={() => navigate('Hillyland')}
+					title="The Vineyard at Hillyland"
+				/>
+		
+		</View>
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/HawkRidge.png')}
+				source={require('./assets/Holmberg.png')}
 				style={styles.navImage}
 			/>
 			
@@ -265,7 +316,7 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Holmberg.png')}
+				source={require('./assets/Hopkins.png')}
 				style={styles.navImage}
 			/>
 			
@@ -283,7 +334,7 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Hopkins.png')}
+				source={require('./assets/Jerram.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -301,7 +352,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/JonathanEdwards.png')}
 				style={styles.navImage}
 			/>
 			
@@ -319,7 +370,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/JonathanEdwards.png')}
+				source={require('./assets/Jones.png')}
 				style={styles.navImage}
 			/>
 			
@@ -337,7 +388,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Jones.png')}
+				source={require('./assets/LandOfNod.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -355,7 +406,7 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Lebanon.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -373,7 +424,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/LostAcres.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -391,7 +442,7 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Maugle.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -409,7 +460,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Maugle.jpg')}
+				source={require('./assets/Miranda.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -427,7 +478,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/ParadiseHills.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -445,7 +496,7 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/ParadiseHills.jpg')}
+				source={require('./assets/Preston.png')}
 				style={styles.navImage}
 			/>
 			
@@ -463,7 +514,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Preston.png')}
+				source={require('./assets/Priam.png')}
 				style={styles.navImage}
 			/>
 			
@@ -481,7 +532,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Priam.png')}
+				source={require('./assets/Rosabianca.png')}
 				style={styles.navImage}
 			/>
 			
@@ -499,7 +550,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Rosabianca.png')}
+				source={require('./assets/Rosedale.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -517,7 +568,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/Saltwater.png')}
 				style={styles.navImage}
 			/>
 			
@@ -535,7 +586,7 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Saltwater.png')}
+				source={require('./assets/Savino.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -553,7 +604,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Savino.jpg')}
+				source={require('./assets/SharpeHill.png')}
 				style={styles.navImage}
 			/>
 			
@@ -571,7 +622,7 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/SharpeHill.png')}
+				source={require('./assets/Staehly.png')}
 				style={styles.navImage}
 			/>
 			
@@ -589,7 +640,7 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Staehly.png')}
+				source={require('./assets/Stonington.png')}
 				style={styles.navImage}
 			/>
 			
@@ -607,7 +658,7 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Stonington.png')}
+				source={require('./assets/SunsetHill.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -625,7 +676,7 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/Brignole.jpg')}
+				source={require('./assets/SunsetMeadow.png')}
 				style={styles.navImage}
 			/>
 			
@@ -643,7 +694,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/SunsetMeadow.png')}
+				source={require('./assets/TaylorBrooke.png')}
 				style={styles.navImage}
 			/>
 			
@@ -661,7 +712,7 @@ export default class passNav extends Component {
 
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/TaylorBrooke.png')}
+				source={require('./assets/WalkerRoad.png')}
 				style={styles.navImage}
 			/>
 			
@@ -679,7 +730,7 @@ export default class passNav extends Component {
 		
 		<View style={styles.row}>
 			<Image 
-				source={require('./assets/WalkerRoad.png')}
+				source={require('./assets/WhiteSilo.jpg')}
 				style={styles.navImage}
 			/>
 			
@@ -694,12 +745,6 @@ export default class passNav extends Component {
 				/>
 		
 		</View>	
-		<View style={styles.row}>
-			<Image 
-				source={require('./assets/Brignole.jpg')}
-				style={styles.navImage}
-			/>
-		</View>
 		</ScrollView>
 	</View>
 	);

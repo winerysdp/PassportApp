@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { AppRegistry, Alert, Linking, Dimensions, LayoutAnimation, Text, View, StatusBar, StyleSheet, TouchableOpacity, TouchableHighlight, Image, AsyncStorage, Button} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { BarCodeScanner, Permissions } from 'expo';
+import {submitState, phoneNumber} from './ProfilePage.js';
 
-var stamped = [false, false, false, false, false, false, false, false, false];
+var stamped = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 var qrCode;
 var pos;
 var dest;
+var destId;
 var stampImage;
+
 
 export default class qrScanner extends Component {
   state = {
@@ -81,201 +84,241 @@ export default class qrScanner extends Component {
     );
   };
 
+_submit() {
+	const { navigate } = this.props.navigation;
+	if(sState){
+		//Do the submit thing
+		
+    stamped[pos] = true;
+    navigate(dest);
+	}
+	else{
+		Alert.alert(
+			'Profile needs to be set up first',
+			'Do you want to go now?',
+			[
+			{text: 'Go Now',onPress: () => navigate('ProfilePage')},
+			{text: 'Cancel', onPress: () => navigate('PassNav')},
+			],
+			{cancellable: false}
+			
+		);
+	}
+};
+  
   _handlePressCancel = () => {
     this.setState({ lastScannedUrl: null });
   };
+  
+  
 
   getWineryStamp() {
-    if (qrCode == 'Arrigoni') {
+    if (qrCode == '2018sdpArrigoni') {
       pos = 0;
       dest = 'Arrigoni';
+	  destId = 1;
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Bethlehem') {
+    if (qrCode == '2018sdpBethlehem') {
       pos = 1;
       dest = 'Bethlehem';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Bishops') {
+    if (qrCode == '2018sdpBishops') {
       pos = 2;
       dest = 'Bishops';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Brignole') {
+    if (qrCode == '2018sdpBrignole') {
       pos = 3;
-      dest = 'Brignole'
+      dest = 'Brignole';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Cassidy') {
+    if (qrCode == '2018sdpCassidy') {
       pos = 4;
-      dest = 'Cassidy'
+      dest = 'Cassidy';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Chamard') {
+    if (qrCode == '2018sdpChamard') {
       pos = 5;
-      dest = 'Chamard'
+      dest = 'Chamard';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'CT Valley') {
+    if (qrCode == '2018sdpCT Valley') {
       pos = 6;
-      dest = 'CTValley'
+      dest = 'CTValley';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Dalice') {
+    if (qrCode == '2018sdpDalice') {
       pos = 7;
-      dest = 'Dalice'
+      dest = 'Dalice';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'DiGrazia') {
+    if (qrCode == '2018sdpDiGrazia') {
       pos = 8;
-      dest = 'DiGrazia'
+      dest = 'DiGrazia';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Gouveia') {
+    if (qrCode == '2018sdpGouveia') {
       pos = 9;
-      dest = 'Gouveia'
+      dest = 'Gouveia';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Haight') {
+    if (qrCode == '2018sdpHaight') {
       pos = 10;
-      dest = 'Haight'
+      dest = 'Haight';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Hawk') {
+    if (qrCode == '2018sdpHawk') {
       pos = 11;
-      dest = 'Hawk'
+      dest = 'Hawk';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Holmberg') {
+
+    if (qrCode == '2018sdpHolmberg') {
       pos = 12;
-      dest = 'Holmberg'
+      dest = 'Holmberg';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Hopkins') {
+    if (qrCode == '2018sdpHopkins') {
       pos = 13;
-      dest = 'Hopkins'
+      dest = 'Hopkins';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Jerram') {
+    if (qrCode == '2018sdpJerram') {
       pos = 14;
-      dest = 'Jerram'
+      dest = 'Jerram';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Jonathan') {
+    if (qrCode == '2018sdpJonathan') {
       pos = 15;
-      dest = 'Jonathan'
+      dest = 'Jonathan';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Jones') {
+    if (qrCode == '2018sdpJones') {
       pos = 16;
-      dest = 'Jones'
+      dest = 'Jones';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Land') {
+    if (qrCode == '2018sdpLand') {
       pos = 17;
-      dest = 'Land'
+      dest = 'Land';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Lebanon') {
+    if (qrCode == '2018sdpLebanon') {
       pos = 18;
-      dest = 'Lebanon'
+      dest = 'Lebanon';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Lost') {
+    if (qrCode == '2018sdpLost') {
       pos = 19;
-      dest = 'Lost'
+      dest = 'Lost';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Maugle') {
+    if (qrCode == '2018sdpMaugle') {
       pos = 20;
-      dest = 'Maugle'
+      dest = 'Maugle';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Miranda') {
+    if (qrCode == '2018sdpMiranda') {
       pos = 21;
-      dest = 'Miranda'
+      dest = 'Miranda';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Paradise') {
+    if (qrCode == '2018sdpParadise') {
       pos = 22;
-      dest = 'Paradise'
+      dest = 'Paradise';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Preston') {
+    if (qrCode == '2018sdpPreston') {
       pos = 23;
-      dest = 'Preston'
+      dest = 'Preston';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Priam') {
+    if (qrCode == '2018sdpPriam') {
       pos = 24;
-      dest = 'Priam'
+      dest = 'Priam';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Rosabianca') {
+    if (qrCode == '2018sdpRosabianca') {
       pos = 25;
-      dest = 'Rosabianca'
+      dest = 'Rosabianca';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Rosedale') {
+    if (qrCode == '2018sdpRosedale') {
       pos = 26;
-      dest = 'Rosedale'
+      dest = 'Rosedale';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Saltwater') {
+    if (qrCode == '2018sdpSaltwater') {
       pos = 27;
-      dest = 'Saltwater'
+      dest = 'Saltwater';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Savino') {
+    if (qrCode == '2018sdpSavino') {
       pos = 28;
-      dest = 'Savino'
+      dest = 'Savino';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Sharpe') {
+    if (qrCode == '2018sdpSharpe') {
       pos = 29;
-      dest = 'Sharpe'
+      dest = 'Sharpe';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Staehly') {
+    if (qrCode == '2018sdpStaehly') {
       pos = 30;
-      dest = 'Staehly'
+      dest = 'Staehly';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Stonington') {
+    if (qrCode == '2018sdpStonington') {
       pos = 31;
-      dest = 'Stonington'
+      dest = 'Stonington';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'SunsetHill') {
+    if (qrCode == '2018sdpSunsetHill') {
       pos = 32;
-      dest = 'SunsetHill'
+      dest = 'SunsetHill';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'SunsetMeadow') {
+    if (qrCode == '2018sdpSunsetMeadow') {
       pos = 33;
-      dest = 'SunsetMeadow'
+      dest = 'SunsetMeadow';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Taylor') {
+    if (qrCode == '2018sdpTaylor') {
       pos = 34;
-      dest = 'Taylor'
+      dest = 'Taylor';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'Walker') {
+    if (qrCode == '2018sdpWalker') {
       pos = 35;
-      dest = 'Walker'
+      dest = 'Walker';
       stampImage = require('./assets/Stamp.png');
     }
-    if (qrCode == 'WhiteSilo') {
+    if (qrCode == '2018sdpWhiteSilo') {
       pos = 36;
-      dest = 'WhiteSilo'
+      dest = 'WhiteSilo';
+      stampImage = require('./assets/Stamp.png');
+    }
+	if (qrCode == '2018sdpChateau') {
+      pos = 37;
+      dest = 'Chateau';
+      stampImage = require('./assets/Stamp.png');
+    }
+	if (qrCode == '2018sdpHeartstone') {
+      pos = 38;
+      dest = 'Heartstone';
+      stampImage = require('./assets/Stamp.png');
+    }
+	if (qrCode == '2018sdpHillyland') {
+      pos = 39;
+      dest = 'Hillyland';
       stampImage = require('./assets/Stamp.png');
     }
   }
   jumpToWinery() {
-    const { navigate } = this.props.navigation;
-    stamped[pos] = true;
-    navigate(dest);
+    
+	this._submit();
   }
 
   _maybeRenderUrl = () => {

@@ -3,27 +3,27 @@ import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, K
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
-export default class Miranda extends Component {
+export default class Heartstone extends Component {
 constructor(props) {
 		super(props);
 		this.state = {text: ""};
-		this.name = "Miranda Vineyard";
-		this.pic = require('./assets/MirandaWine.jpg');
-		this.address = "42 Ives Road, Goshen, CT 06756";
-		this.info = "Our airy tasting room and large deck are perfect places to enjoy a glass of wine. Small batches of wine by vintner Manny Miranda follows his motto: “Create Old World wines using modern techniques for local connoisseurs.” Wine is available by the glass or bottle, picnics are welcome. Check website for events.";
+		this.name = "Heartstone Farm and Winery";
+		this.pic = require('./assets/Heartstone.jpg');
+		this.address = "468 Rte. 87, Columbia, CT";
+		this.info = "Open April 26-Nov 4 Thurs-Sat 12-7pm, Sun 12-6pm.";
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
 	goToMap() {
 		if (Platform.OS === 'ios') {
-			Linking.openURL('http://maps.apple.com/?daddr=42+Ives+Road,Goshen,CT')
+			Linking.openURL('http://maps.apple.com/?daddr=468+Rte.+87,Columbia,CT')
 		}
 		else {
-			Linking.openURL('geo:42+Ives+Road%2C+Goshen%2C+CT')
+			Linking.openURL('geo:468+Rte.+87%2C+Columbia%2C+CT')
 		}
 	}
 	displayStamp() {
-		if (stamped[21]) {
+		if (stamped[38]) {
 			return ( 
 				<View>
 				<Image 

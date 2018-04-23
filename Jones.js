@@ -8,7 +8,7 @@ constructor(props) {
 		super(props);
 		this.state = {text: ""};
 		this.name = "Jones Winery";
-		this.pic = require('./assets/wine3.jpg');
+		this.pic = require('./assets/JonesWine.jpg');
 		this.address = "606 Walnut Tree Hill Road, Shelton, CT 06484";
 		this.info = "Our family has been farming 400 acres in the White Hills of Shelton for six generations. Located in a beautifully restored barn, the tasting room and outdoor patio provide the perfect setting to experience and enjoy our wines. We proudly offer traditional grape wines as well as specialty fruit wines, showcasing Connecticut Grown grapes and fruits, including white, red, rosé,  fruit and dessert wines.";
 		this.stamp = require('./assets/Stamp.png');

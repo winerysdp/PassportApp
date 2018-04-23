@@ -8,7 +8,7 @@ constructor(props) {
 		super(props);
 		this.state = {text: ""};
 		this.name = "Cassidy Hill Vineyard";
-		this.pic = require('./assets/wine3.jpg');
+		this.pic = require('./assets/CassidyHillWine.jpg');
 		this.address = "454 Cassidy Hill Road, Coventry, CT 06238";
 		this.info = "Experience the natural beauty that is Cassidy Hill Vineyard. On fertile farmland overlooking the rolling hills of eastern Connecticut, we produce an eclectic collection of New England styled wines. Visit the log cabin winery's tasting room. Stroll through our vineyard. Enjoy a glass of wine on the winery's porch.";
 		this.stamp = require('./assets/Stamp.png');

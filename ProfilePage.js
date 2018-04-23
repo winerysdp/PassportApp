@@ -3,14 +3,27 @@ import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, K
 const Item = Picker.Item;
 import { StackNavigator } from 'react-navigation';
 
+var submitState = true;
+global.phoneNumber = '';
+global.sState = false;
+
+
 export default class ProfilePage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { firstName: ' ', lastName: ' ', month: '1', day: '1', year: '2018', phone: ' ' };
+		
   }
+
 
 	render() {
 		const { navigate } = this.props.navigation;
+		 _submit= () => {
+			//const { navigate } = this.props.navigation;
+			submitState = true;
+			sState = true;
+			navigate('PassNav');
+		}
 		return(
 			<View style={styles.book}>
 			<ScrollView contentContainerStyle={styles.contentContainer}>
@@ -220,7 +233,7 @@ export default class ProfilePage extends Component {
 							onChangeText={(text) => this.setState(previousState => {
 								return { phone: text };
 						})}
-						value={this.state.phone}
+						phoneNumber={this.state.phone}
 					/>
 				</View>
 				</View>
@@ -228,6 +241,7 @@ export default class ProfilePage extends Component {
 				
 				<Button
 					title='Submit'
+					onPress={()=>_submit()}
 				/>
 				
 				<Button
@@ -239,7 +253,10 @@ export default class ProfilePage extends Component {
 			
 		);
 	}
+
 }
+
+
 const styles = StyleSheet.create({
   contentContainer: {
 	paddingVertical: 20,

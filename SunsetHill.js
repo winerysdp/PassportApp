@@ -8,7 +8,7 @@ constructor(props) {
 		super(props);
 		this.state = {text: ""};
 		this.name = "Sunset Hill Vineyard, LLC";
-		this.pic = require('./assets/wine3.jpg');
+		this.pic = require('./assets/SunsetHillWine.jpg');
 		this.address = "5 Elys Ferry Road, Lyme, CT 06371";
 		this.info = " We are a family-run boutique vineyard on 12 acres in Lyme. As a small vineyard, we pride ourselves in offering an intimate experience for up to eight guests where you can meet the winemakers, tour the vineyard, and hang out on our deck overlooking the Chardonnay grapes, while you sample the fruits of our labor. Make an appointment for a tasting or purchase today.";
 		this.stamp = require('./assets/Stamp.png');

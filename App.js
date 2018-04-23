@@ -9,11 +9,14 @@ import Brignole from "./Brignole.js";
 import Cassidy from "./Cassidy.js";
 import Chamard from "./Chamard.js";
 import CTValley from "./CTValley.js";
+import Chateau from "./Chateau.js";
 import Dalice from "./Dalice.js";
 import DiGrazia from "./DiGrazia.js";
 import Gouveia from "./Gouveia.js";
 import Haight from "./Haight.js";
 import Hawk from "./Hawk.js";
+import Heartstone from "./Heartstone.js";
+import Hillyland from "./Hillyland.js";
 import Holmberg from "./Holmberg.js";
 import Hopkins from "./Hopkins.js";
 import Jerram from "./Jerram.js";
@@ -54,12 +57,15 @@ const App = StackNavigator({
 	Brignole: {screen: Brignole},
 	Cassidy: {screen: Cassidy},
 	Chamard: {screen: Chamard},
+	Chateau: {screen: Chateau},
 	CTValley: {screen: CTValley},
 	Dalice: {screen: Dalice},
 	DiGrazia: {screen: DiGrazia},
 	Gouveia: {screen: Gouveia},
 	Haight: {screen: Haight},
 	Hawk: {screen: Hawk},
+	Heartstone: {screen: Heartstone},
+	Hillyland: {screen: Hillyland},
 	Holmberg: {screen: Holmberg},
 	Hopkins: {screen: Hopkins},
 	Jerram: {screen: Jerram},

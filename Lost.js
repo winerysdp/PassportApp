@@ -8,7 +8,7 @@ constructor(props) {
 		super(props);
 		this.state = {text: ""};
 		this.name = "Lost Acres Vineyards";
-		this.pic = require('./assets/wine3.jpg');
+		this.pic = require('./assets/LostAcresWine.jpg');
 		this.address = "80 Lost Acres Road, North Granby, CT 06060 ";
 		this.info = "In the 1700’s, Lost Acres was a political no-man’s land known as “The Wedge.” In the early 1800’s the Wedge’s free spirited, independent minded, cider distilling hill farmers populated the area. Lost Acres Vineyard has extended this tradition into grape wine. We produce hand crafted boutique white and red wines, including our most popular wine, Wedge White. Grape growing and wine making is the central activity of our farm, but not the only one. Our horses and herb gardens also keep us busy. A visit to Lost Acres Vineyard offers great wine, art shows, picnics, music and more.";
 		this.stamp = require('./assets/Stamp.png');

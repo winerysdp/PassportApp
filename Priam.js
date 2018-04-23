@@ -8,7 +8,7 @@ constructor(props) {
 		super(props);
 		this.state = {text: ""};
 		this.name = "Priam Vineyards";
-		this.pic = require('./assets/wine3.jpg');
+		this.pic = require('./assets/PriamWine.jpg');
 		this.address = "11 Shailor Hill Road, Colchester, CT 06415";
 		this.info = "A sustainable vineyard & completely solar powered winery located in Colchester, CT. on 40+ acres, with a magnificent view of the new England countryside. We offer estate grown, international award-winning wines to enjoy by glass or bottle purchases. Outside picnics are welcome on our wine patio or in the vineyard with wine purchase. We are the largest outdoor wedding and event venue doing events up to 500 guests. See our website for information on our summer concerts, dinners, festivals and weddings that are magical in this beautiful environment. ";
 		this.stamp = require('./assets/Stamp.png');
