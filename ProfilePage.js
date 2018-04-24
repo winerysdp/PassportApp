@@ -4,7 +4,7 @@ const Item = Picker.Item;
 import { StackNavigator } from 'react-navigation';
 
 var submitState = true;
-global.phoneNumber = '';
+global.userId = '';
 global.sState = false;
 
 
@@ -37,15 +37,14 @@ export default class ProfilePage extends Component {
 			})
 			.then((response) => response.json())
 			.then((responseJson) => {
-				return response.response;
+				// optionally get error code if user already exists
+				userId = responseJson.response;
+				sState = true;
+				navigate('PassNav')
 			})
 			.catch((error) => {
 				console.error(error);
 			});
-			
-			submitState = true;
-			sState = true;
-			navigate('PassNav');
 		}
 		return(
 			<View style={styles.book}>
