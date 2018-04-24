@@ -22,7 +22,7 @@ export default class ProfilePage extends Component {
 			fetch('http://sdp-winerypassport.cse.uconn.edu/api/users/add', {
 				method: 'POST',
 				headers: {
-					//Accept: 'application/json',
+					Accept: 'application/json',
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
