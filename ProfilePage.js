@@ -20,6 +20,29 @@ export default class ProfilePage extends Component {
 		const { navigate } = this.props.navigation;
 		 _submit= () => {
 			//const { navigate } = this.props.navigation;
+			fetch('http://sdp-winerypassport.cse.uconn.edu/users/add', {
+				method: 'POST',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					fname: this.state.firstName,
+					lname: this.state.lastName,
+					phone: this.state.phone,
+					month: this.state.month,
+					day: this.state.day,
+					year: this.state.year
+				})
+			})
+			.then((response) => response.json())
+			.then((responseJson) => {
+				return response.response;
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+			
 			submitState = true;
 			sState = true;
 			navigate('PassNav');
