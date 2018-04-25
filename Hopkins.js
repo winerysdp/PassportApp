@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=25+Hopkins+Road,New+Preston,CT')
 		}
 		else {
-			Linking.openURL('geo:25+Hopkins+Road%2C+New+Preston%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=25+Hopkins+Road+New+Preston+CT')
 		}
 	}
 	displayStamp() {

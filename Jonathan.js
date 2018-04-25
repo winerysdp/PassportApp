@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=74+Chester+Main+Road,North+Stonington,CT')
 		}
 		else {
-			Linking.openURL('geo:74+Chester+Main+Road%2C+North+Stonington%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=74+Chester+Main+Road+North+Stonington+CT')
 		}
 	}
 	displayStamp() {

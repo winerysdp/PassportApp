@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=11+Shailor+Hill+Road,Colchester,CT')
 		}
 		else {
-			Linking.openURL('geo:11+Shailor+Hill+Road%2C+Colchester%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=11+Shailor+Hill+Road+Colchester+CT')
 		}
 	}
 	displayStamp() {

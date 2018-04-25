@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=1480+Litchfield+Turnpike,New+Hartford,CT')
 		}
 		else {
-			Linking.openURL('geo:1480+Litchfield+Turnpike%2C+New+Hartford%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=1480+Litchfield+Turnpike+New+Hartford+CT')
 		}
 	}
 	displayStamp() {

@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=42+Ives+Road,Goshen,CT')
 		}
 		else {
-			Linking.openURL('geo:42+Ives+Road%2C+Goshen%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=42+Ives+Road+Goshen+CT')
 		}
 	}
 	displayStamp() {

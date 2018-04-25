@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=115+Cow+Hill+Road,Clinton,CT')
 		}
 		else {
-			Linking.openURL('geo:115+Cow+Hill+Road%2C+Clinton%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=115+Cow+Hill+Road+Clinton+CT')
 		}
 	}
 	displayStamp() {

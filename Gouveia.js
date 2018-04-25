@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=1339+Whirlwind+Hill+Road,Wallingford,CT')
 		}
 		else {
-			Linking.openURL('geo:1339+Whirlwind+Hill+Road%2C+Wallingford%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=1339+Whirlwind+Hill+Road+Wallingford+CT')
 		}
 	}
 	displayStamp() {

@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=454+Cassidy+Hill+Road,Coventry,CT')
 		}
 		else {
-			Linking.openURL('geo:454+Cassidy+Hill+Road%2C+Coventry%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=454+Cassidy+Hill+Road+Coventry+CT')
 		}
 	}
 	displayStamp() {

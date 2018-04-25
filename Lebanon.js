@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=589+Exeter+Road,Lebanon,CT')
 		}
 		else {
-			Linking.openURL('geo:589+Exeter+Road%2C+Lebanon%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=589+Exeter+Road+Lebanon+CT')
 		}
 	}
 	displayStamp() {

@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=108+Wade+Road,Pomfret,CT')
 		}
 		else {
-			Linking.openURL('geo:108+Wade+Road%2C+Pomfret%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=108+Wade+Road+Pomfret+CT')
 		}
 	}
 	displayStamp() {

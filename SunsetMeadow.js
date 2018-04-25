@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=599+Old+Middle+Street,Goshen,CT')
 		}
 		else {
-			Linking.openURL('geo:599+Old+Middle+Street%2C+Goshen%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=599+Old+Middle+Street+Goshen+CT')
 		}
 	}
 	displayStamp() {

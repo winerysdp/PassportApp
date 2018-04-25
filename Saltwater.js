@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=349+Elm+Street,Stonington,CT')
 		}
 		else {
-			Linking.openURL('geo:349+Elm+Street%2C+Stonington%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=349+Elm+Street+Stonington+CT')
 		}
 	}
 	displayStamp() {

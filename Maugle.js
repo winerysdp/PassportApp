@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=825-827+Colonel+Ledyard+Highway,Ledyard,CT')
 		}
 		else {
-			Linking.openURL('geo:825-827+Colonel+Ledyard+Highway%2C+Ledyard%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=825-827+Colonel+Ledyard+Highway+Ledyard+CT')
 		}
 	}
 	displayStamp() {

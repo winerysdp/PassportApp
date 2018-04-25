@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=1355+Boston+Post+Road,Guilford,CT')
 		}
 		else {
-			Linking.openURL('geo:1355+Boston+Post+Road%2C+Guilford%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=1355+Boston+Post+Road+Guilford+CT')
 		}
 	}
 	displayStamp() {

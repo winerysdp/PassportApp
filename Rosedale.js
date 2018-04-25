@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=25+East+Weatogue+Street,Simsbury,CT')
 		}
 		else {
-			Linking.openURL('geo:25+East+Weatogue+Street%2C+Simsbury%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=25+East+Weatogue+Street+Simsbury+CT')
 		}
 	}
 	displayStamp() {

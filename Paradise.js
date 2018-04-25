@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=15+Wind+Swept+Hill+Road,Wallingford,CT')
 		}
 		else {
-			Linking.openURL('geo:15+Wind+Swept+Hill+Road%2C+Wallingford%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=15+Wind+Swept+Hill+Road+Wallingford+CT')
 		}
 	}
 	displayStamp() {

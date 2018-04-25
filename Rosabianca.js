@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=1536+Middletown+Avenue,Northford,CT')
 		}
 		else {
-			Linking.openURL('geo:1536+Middletown+Avenue%2C+Northford%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=1536+Middletown+Avenue+Northford+CT')
 		}
 	}
 	displayStamp() {

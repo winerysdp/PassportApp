@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=80+Lost+Acres+Road,North+Granby,CT')
 		}
 		else {
-			Linking.openURL('geo:80+Lost+Acres+Road%2C+North+Granby%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=80+Lost+Acres+Road+North+Granby+CT')
 		}
 	}
 	displayStamp() {

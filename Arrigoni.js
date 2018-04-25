@@ -17,12 +17,37 @@ constructor(props) {
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
-	goToMap() {
-		if (Platform.OS === 'ios') {
-			Linking.openURL('http://maps.apple.com/?daddr=1287+Portland-Cobalt+Road,Portland,CT')
+	componentDidMount() {
+		try {
+		var val = AsyncStorage.getItem('ArrigoniText');
+		if (val !== null) {
+			this.setState({text: JSON.stringify(val)});
 		}
 		else {
-			Linking.openURL('geo:1287+Portland-Cobalt+Road%2C+Portland%2C+CT')
+			AsyncStorage.setItem('ArrigoniText', "test");
+			this.setState({text: "test"});
+		}
+		}
+		catch(error) {
+			//AsyncStorage.setItem('ArrigoniText', "");
+		}	
+	}
+	updateNotes(t) {
+		try {
+		AsyncStorage.setItem('ArrigoniText', t);
+		this.setState({text: t});
+		}
+		catch (error){
+			//
+		}
+
+	}
+	goToMap() {
+		if (Platform.OS === 'ios') {
+			Linking.openURL('http://maps.apple.com/?daddr=1287+Portland-Cobalt+Road,Portland,CT');
+		}
+		else {
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=1287+Portland-Cobalt+Road+Portland+CT');
 		}
 	}
 	displayStamp() {
@@ -103,8 +128,8 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
-					value={this.state.text}
+					onChangeText={this.updateNotes}
+					value = {this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Bethlehem')}/>*/}
 				<Button

@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=12+Orchard+Drive,Gales+Ferry,CT')
 		}
 		else {
-			Linking.openURL('geo:12+Orchard+Drive%2C+Gales+Ferry%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=12+Orchard+Drive+Gales+Ferry+CT')
 		}
 	}
 	displayStamp() {

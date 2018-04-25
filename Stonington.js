@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=523+Taugwonk+Road,Stonington,CT')
 		}
 		else {
-			Linking.openURL('geo:523+Taugwonk+Road%2C+Stonington%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=523+Taugwonk+Road+Stonington+CT')
 		}
 	}
 	displayStamp() {

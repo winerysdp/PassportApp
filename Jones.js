@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=606+Walnut+Tree+Hill+Road,Shelton,CT')
 		}
 		else {
-			Linking.openURL('geo:606+Walnut+Tree+Hill+Road%2C+Shelton%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=606+Walnut+Tree+Hill+Road+Shelton+CT')
 		}
 	}
 	displayStamp() {

@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=99+Lower+Road,East+Canaan,CT')
 		}
 		else {
-			Linking.openURL('geo:99+Lower+Road%2C+East+Canaan%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=99+Lower+Road+East+Canaan+CT')
 		}
 	}
 	displayStamp() {

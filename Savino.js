@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=128+Ford+Road,Woodbridge,CT')
 		}
 		else {
-			Linking.openURL('geo:128+Ford+Road%2C+Woodbridge%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=128+Ford+Road+Woodbridge+CT')
 		}
 	}
 	displayStamp() {

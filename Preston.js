@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=100+Miller+Road,Preston,CT')
 		}
 		else {
-			Linking.openURL('geo:100+Miller+Road%2C+Preston%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=100+Miller+Road+Preston+CT')
 		}
 	}
 	displayStamp() {

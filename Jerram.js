@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=535+Town+Hill+Road,New+Hartford,CT')
 		}
 		else {
-			Linking.openURL('geo:535+Town+Hill+Road%2C+New+Hartford%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=535+Town+Hill+Road+New+Hartford+CT')
 		}
 	}
 	displayStamp() {

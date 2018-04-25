@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=28+Plungis+Road,Watertown,CT')
 		}
 		else {
-			Linking.openURL('geo:28+Plungis+Road%2C+Watertown%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=28+Plungis+Road+Watertown+CT')
 		}
 	}
 	displayStamp() {

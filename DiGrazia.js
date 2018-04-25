@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=131+Tower+Road,Brookfield,CT')
 		}
 		else {
-			Linking.openURL('geo:131+Tower+Road%2C+Brookfield%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=131+Tower+Road+Brookfield+CT')
 		}
 	}
 	displayStamp() {

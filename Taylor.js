@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=848+Rte+171,Woodstock,CT')
 		}
 		else {
-			Linking.openURL('geo:848+Rte+171%2C+Woodstock%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=848+Rte+171+Woodstock+CT')
 		}
 	}
 	displayStamp() {
