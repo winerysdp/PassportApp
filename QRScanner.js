@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { AppRegistry, Alert, Linking, Dimensions, LayoutAnimation, Text, View, StatusBar, StyleSheet, TouchableOpacity, TouchableHighlight, Image, AsyncStorage, Button} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { BarCodeScanner, Permissions } from 'expo';
-import {submitState, phoneNumber} from './ProfilePage.js';
+import {sState, userId} from './ProfilePage.js';
 
 var stamped = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 var qrCode;
 var pos;
+var dataNum;
 var dest;
 var destId;
 var stampImage;
@@ -115,83 +116,100 @@ _submit() {
   getWineryStamp() {
     if (qrCode == '2018sdpArrigoni') {
       pos = 0;
+	  dataNum = 17;
       dest = 'Arrigoni';
 	  destId = 1;
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpBethlehem') {
       pos = 1;
+	  dataNum = 7;
       dest = 'Bethlehem';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpBishops') {
       pos = 2;
+	  dataNum = 20;
       dest = 'Bishops';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpBrignole') {
       pos = 3;
+	  dataNum = 4;
       dest = 'Brignole';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpCassidy') {
       pos = 4;
+	  dataNum = 35;
       dest = 'Cassidy';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpChamard') {
       pos = 5;
+	  dataNum = 18;
       dest = 'Chamard';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpCT Valley') {
       pos = 6;
+	  dataNum = 8;
       dest = 'CTValley';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpDalice') {
       pos = 7;
+	  dataNum = 25;
       dest = 'Dalice';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpDiGrazia') {
       pos = 8;
+	  dataNum = 1;
       dest = 'DiGrazia';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpGouveia') {
       pos = 9;
+	  dataNum = 21;
       dest = 'Gouveia';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpHaight') {
       pos = 10;
+	  dataNum = 9;
       dest = 'Haight';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpHawk') {
       pos = 11;
+	  dataNum = 10;
       dest = 'Hawk';
       stampImage = require('./assets/Stamp.png');
     }
 
     if (qrCode == '2018sdpHolmberg') {
       pos = 12;
+	  dataNum = 26;
       dest = 'Holmberg';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpHopkins') {
       pos = 13;
+	  dataNum = 11;
       dest = 'Hopkins';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpJerram') {
       pos = 14;
+	  dataNum = 12;
       dest = 'Jerram';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpJonathan') {
       pos = 15;
+	  dataNum = 27;
+	  dataNum = 2;
       dest = 'Jonathan';
       stampImage = require('./assets/Stamp.png');
     }
@@ -202,117 +220,146 @@ _submit() {
     }
     if (qrCode == '2018sdpLand') {
       pos = 17;
+	  dataNum = 13;
       dest = 'Land';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpLebanon') {
       pos = 18;
+	  dataNum = 28;
       dest = 'Lebanon';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpLost') {
       pos = 19;
+	  dataNum = 6;
       dest = 'Lost';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpMaugle') {
       pos = 20;
+	  dataNum = 29;
       dest = 'Maugle';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpMiranda') {
       pos = 21;
+	  dataNum = 14;
       dest = 'Miranda';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpParadise') {
       pos = 22;
+	  dataNum = 22;
       dest = 'Paradise';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpPreston') {
       pos = 23;
+	  dataNum = 30;
       dest = 'Preston';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpPriam') {
       pos = 24;
+	  dataNum = 31;
       dest = 'Priam';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpRosabianca') {
       pos = 25;
+	  dataNum = 23;
       dest = 'Rosabianca';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpRosedale') {
       pos = 26;
+	  dataNum = 5;
       dest = 'Rosedale';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpSaltwater') {
       pos = 27;
+	  dataNum = 32;
       dest = 'Saltwater';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpSavino') {
       pos = 28;
+	  dataNum = 24;
       dest = 'Savino';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpSharpe') {
       pos = 29;
+	  dataNum = 36;
       dest = 'Sharpe';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpStaehly') {
       pos = 30;
+	  dataNum = 19;
       dest = 'Staehly';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpStonington') {
       pos = 31;
+	  dataNum = 33;
       dest = 'Stonington';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpSunsetHill') {
       pos = 32;
+	  dataNum = 34;
       dest = 'SunsetHill';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpSunsetMeadow') {
       pos = 33;
+	  dataNum = 15;
       dest = 'SunsetMeadow';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpTaylor') {
       pos = 34;
+	  dataNum = 37;
       dest = 'Taylor';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpWalker') {
       pos = 35;
+	  dataNum = 16;
       dest = 'Walker';
       stampImage = require('./assets/Stamp.png');
     }
     if (qrCode == '2018sdpWhiteSilo') {
       pos = 36;
+	  dataNum = 3;
       dest = 'WhiteSilo';
       stampImage = require('./assets/Stamp.png');
     }
 	if (qrCode == '2018sdpChateau') {
       pos = 37;
+	  dataNum = 38;
       dest = 'Chateau';
       stampImage = require('./assets/Stamp.png');
     }
 	if (qrCode == '2018sdpHeartstone') {
       pos = 38;
+	  dataNum = 39;
       dest = 'Heartstone';
       stampImage = require('./assets/Stamp.png');
     }
 	if (qrCode == '2018sdpHillyland') {
       pos = 39;
+	  dataNum = 40;
       dest = 'Hillyland';
+      stampImage = require('./assets/Stamp.png');
+    }
+	if (qrCode == '2018sdpWineFestival') {
+      pos = 40;
+	  dataNum = 41;
+      dest = 'WineFest';
       stampImage = require('./assets/Stamp.png');
     }
   }

@@ -42,8 +42,10 @@ import SunsetMeadow from "./SunsetMeadow.js";
 import Taylor from "./Taylor.js";
 import Walker from "./Walker.js";
 import WhiteSilo from "./WhiteSilo.js";
+import WineFest from "./WineFest.js";
 import passCover from './PassCover.js';
 import passNav from './PassNav.js';
+import Rules from './Rules.js';
 import qrScanner from './QRScanner.js';
 
 const App = StackNavigator({
@@ -90,7 +92,9 @@ const App = StackNavigator({
 	Taylor: {screen: Taylor},
 	Walker: {screen: Walker},
 	WhiteSilo: {screen: WhiteSilo},
+	WineFest: {screen: WineFest},
 	PassNav: { screen: passNav},
+	Rules: { screen: Rules},
 }, 
 {headerMode: 'None'}
 );
