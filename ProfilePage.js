@@ -4,14 +4,14 @@ const Item = Picker.Item;
 import { StackNavigator } from 'react-navigation';
 
 var submitState = true;
-global.userId = '';
+global.userId = 0;
 global.sState = false;
 
 
 export default class ProfilePage extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { firstName: ' ', lastName: ' ', month: '1', day: '1', year: '2018', phone: ' ' };
+		this.state = { firstName: '', lastName: '', month: '1', day: '1', year: '2018', phone: '' };
 		
   }
 
@@ -19,8 +19,7 @@ export default class ProfilePage extends Component {
 	render() {
 		const { navigate } = this.props.navigation;
 		 _submit= () => {
-			//const { navigate } = this.props.navigation;
-			fetch('http://sdp-winerypassport.cse.uconn.edu/users/add', {
+			fetch('http://sdp-winerypassport.cse.uconn.edu/api/users/add', {
 				method: 'POST',
 				headers: {
 					Accept: 'application/json',
@@ -35,10 +34,11 @@ export default class ProfilePage extends Component {
 					year: this.state.year
 				})
 			})
-			.then((response) => response.json())
+			//.then((response) => response.json())
 			.then((responseJson) => {
 				// optionally get error code if user already exists
 				userId = responseJson.response;
+				console.log(userId);
 				sState = true;
 				navigate('PassNav')
 			})

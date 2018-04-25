@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=278+Town+Street,East+Haddam,CT')
 		}
 		else {
-			Linking.openURL('geo:278+Town+Street%2C+East+Haddam%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=278+Town+Street%2C+East+Haddam%2C+CT')
 		}
 	}
 	displayStamp() {
@@ -34,8 +34,8 @@ constructor(props) {
 					alignItems: 'center',
 					resizeMode: 'contain',
 					resizeMode: 'cover',
-					width: 75,
-					height: 75,
+					width: 125,
+					height: 125,
 				}}
 				/>
 				</View>
@@ -52,9 +52,15 @@ constructor(props) {
 						alignItems: 'center',
 						resizeMode: 'contain',
 						resizeMode: 'cover',
-						width: 75,
-						height: 75,
+						width: 125,
+						height: 125,
 					}}
+				
+				/>
+				<Button
+				style={styles.button}
+				onPress={() => navigate('QRScanner')}
+				title="QR Scanner"
 				/>
 				</View>
 			);

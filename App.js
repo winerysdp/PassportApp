@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import noteScreen from './NoteScreen.js';
 import Arrigoni from './Arrigoni.js';
 import Bishops from './Bishops.js';
 import Bethlehem from "./Bethlehem.js";
@@ -50,7 +49,6 @@ import qrScanner from './QRScanner.js';
 const App = StackNavigator({
 	Passport: { screen: passCover},
 	QRScanner: { screen: qrScanner},
-	Note: { screen: noteScreen},
 	Arrigoni: { screen: Arrigoni},
 	Bishops: { screen: Bishops},
 	Bethlehem: {screen: Bethlehem},

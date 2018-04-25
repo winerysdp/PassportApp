@@ -333,14 +333,14 @@ _submit() {
           <Text style = {{color: 'white', fontSize: 18,}}> Press to Stamp </Text>
           <TouchableHighlight 
             onPress = {() => this.jumpToWinery()}>
-            <Image
+           /* <Image
               style={{
                 resizeMode: 'contain',
                 resizeMode: 'cover',
                 width: 150,
                 height: 150,
               }}
-              source = {stampImage}/>
+              source = {stampImage}/>*/
           </TouchableHighlight>
         </View>
       );

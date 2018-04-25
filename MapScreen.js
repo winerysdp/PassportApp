@@ -8,7 +8,7 @@ export default class MapScreen extends Component {
 			Linking.openURL('http://maps.apple.com/?daddr=287+Judson+Ave,Mystic,Connecticut')
 		}
 		else {
-			Linking.openURL('geo:287+Judson+Ave%2C+Mystic%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=287+Judson+Ave%2C+Mystic%2C+CT')
 		}
 	}
 	render() {

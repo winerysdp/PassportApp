@@ -18,15 +18,24 @@ constructor(props) {
 		this.hours = "Sat-Sun 11am-6pm. Extended hours in Spring, Summer and Fall. Please check Arrigoniwinery.com and Facebook for extended hours and entertainment schedule. ";
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Arrigoni').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=1287+Portland-Cobalt+Road,Portland,CT')
 		}
 		else {
-			Linking.openURL('geo:1287+Portland-Cobalt+Road%2C+Portland%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=1287+Portland-Cobalt+Road%2C+Portland%2C+CT')
 		}
 	}
 	displayStamp() {
+		const { navigate } = this.props.navigation;
 		if (stamped[0]) {
 			return ( 
 				<View>
@@ -38,8 +47,8 @@ constructor(props) {
 					alignItems: 'center',
 					resizeMode: 'contain',
 					resizeMode: 'cover',
-					width: 75,
-					height: 75,
+					width: 125,
+					height: 125,
 				}}
 				/>
 				</View>
@@ -56,9 +65,15 @@ constructor(props) {
 						alignItems: 'center',
 						resizeMode: 'contain',
 						resizeMode: 'cover',
-						width: 75,
-						height: 75,
+						width: 125,
+						height: 125,
 					}}
+				
+				/>
+				<Button
+				style={styles.button}
+				onPress={() => navigate('QRScanner')}
+				title="QR Scanner"
 				/>
 				</View>
 			);
@@ -101,11 +116,14 @@ constructor(props) {
 						backgroundColor: 'white',
 					}}
 					
-					editable = {true}
-					multiline = {true}
-					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
-					value={this.state.text}
+					 editable = {true}
+					 multiline = {true}
+					 numberofLines = {4}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Arrigoni', text); // Note: persist input
+					 }}
+					 value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Bethlehem')}/>*/}
 				<Button
@@ -147,6 +165,7 @@ const styles = StyleSheet.create({
 	backgroundColor: '#4b85bc',
 	//color: '#eaefff',
 	marginTop: 100,
+	alignItems: 'center',
 	position: 'absolute',
 	bottom: 0,
   },

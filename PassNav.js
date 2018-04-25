@@ -579,7 +579,7 @@ export default class passNav extends Component {
 				<Button
 					style={styles.button}
 					onPress={() => navigate('Saltwater')}
-					title="Saltwate Vineyards"
+					title="Saltwater Vineyards"
 				/>
 		
 		</View>	

@@ -19,7 +19,7 @@ constructor(props) {
 			Linking.openURL('http://maps.apple.com/?daddr=128+Ford+Road,Woodbridge,CT')
 		}
 		else {
-			Linking.openURL('geo:128+Ford+Road%2C+Woodbridge%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=128+Ford+Road%2C+Woodbridge%2C+CT')
 		}
 	}
 	displayStamp() {
@@ -34,8 +34,8 @@ constructor(props) {
 					alignItems: 'center',
 					resizeMode: 'contain',
 					resizeMode: 'cover',
-					width: 75,
-					height: 75,
+					width: 125,
+					height: 125,
 				}}
 				/>
 				</View>
@@ -52,9 +52,15 @@ constructor(props) {
 						alignItems: 'center',
 						resizeMode: 'contain',
 						resizeMode: 'cover',
-						width: 75,
-						height: 75,
+						width: 125,
+						height: 125,
 					}}
+				
+				/>
+				<Button
+				style={styles.button}
+				onPress={() => navigate('QRScanner')}
+				title="QR Scanner"
 				/>
 				</View>
 			);
