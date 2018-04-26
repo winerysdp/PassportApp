@@ -102,6 +102,10 @@ _submit() {
 				})
 			})
 			//.then((response) => response.json())
+			.then(function(response) {
+				return response.json()
+			})
+
 			.then((responseJson) => {
 				// optionally get error code if stamp already exists
 				console.log("stamped");

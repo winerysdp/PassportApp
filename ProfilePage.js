@@ -41,8 +41,6 @@ export default class ProfilePage extends Component {
 			.then((responseJson) => {
 				// optionally get error code if user already exists
 				userId = responseJson.response;
-				//console.log(response);
-				console.log(responseJson);
 				console.log(global.userId);
 				sState = true;
 				navigate('PassNav')
