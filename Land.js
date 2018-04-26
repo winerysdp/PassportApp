@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Land of Nod";
 		this.pic = require('./assets/LandOfNodWine.jpg');
+		this.phone = '860-824-5225';
 		this.address = "99 Lower Road, East Canaan, CT 06024";
-		this.info = " The Land of Nod has the proud distinction of being recognized as a National Bicentennial Farm. It is one of the oldest working farms in Connecticut serving the community for over nine generations. The winery lays before the beautiful Canaan Mountain State Reserve Forest beside the Blackberry River. We planted our first vines in 1994 and opened as a production winery in 1998. The tasting room offers a wide selection of grape and fruit wines, from our traditional red and whites to fruity Raspberry, Blueberry-Raspberry Medley, Peach, Winter Pear, and Chocolate Raspberry. We encourage picnicking. See www.landofnodwinery.com for more info.";
+		this.info = 'Open April 1-Nov 4: Sat-Sun 11am-5pm. Also open Fridays from Memorial Day Weekend - Labor Day, Fri-Sun 11am-5pm. Closed Easter Sunday. Open Memorial Day & Labor Day 11am-5pm. The Land of Nod has the proud distinction of being recognized as a National Bicentennial Farm. It is one of the oldest working farms in Connecticut serving the community for over nine generations. The winery lays before the beautiful Canaan Mountain State Reserve Forest beside the Blackberry River. We planted our first vines in 1994 and opened as a production winery in 1998. The tasting room offers a wide selection of grape and fruit wines, from our traditional red and whites to fruity Raspberry, Blueberry-Raspberry Medley, Peach, Winter Pear, and Chocolate Raspberry. We encourage picnicking. See www.landofnodwinery.com for more info.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Land').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=99+Lower+Road,East+Canaan,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Land', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Lebanon')}/>*/}

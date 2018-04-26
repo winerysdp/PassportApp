@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Platform, Linking } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Platform, Linking, AsyncStorage } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Jerram Winery";
 		this.pic = require('./assets/JerramWine.jpg');
+		this.phone = '860-379-8749';
 		this.address = "535 Town Hill Road, New Hartford, CT 06057";
-		this.info = "Located in the historic Town Hill section of New Hartford, we are a boutique winery with original vines planted since 1982. Enjoy tastings, tours, picnics, hiking, and art from Connecticut artists in our gallery. We host private parties and celebrations April through October. Annual Spring Wine Fest in June and Harvest Festival in October.";
+		this.info = 'Open May to Dec: Fri-Sun 11am-5pm. Located in the historic Town Hill section of New Hartford, we are a boutique winery with original vines planted since 1982. Enjoy tastings, tours, picnics, hiking, and art from Connecticut artists in our gallery. We host private parties and celebrations April through October. Annual Spring Wine Fest in June and Harvest Festival in October.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Jerram').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=535+Town+Hill+Road,New+Hartford,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Jerram', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Jonathan')}/>*/}

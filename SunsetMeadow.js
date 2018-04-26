@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Sunset Meadow Vineyards";
 		this.pic = require('./assets/SunsetMeadowWine.png');
+		this.phone = '860-201-4654';
 		this.address = "599 Old Middle Street, Goshen, CT 06756";
-		this.info = "Located in the picturesque Litchfield Hills, SMV is one of the state's premier award winning vineyards. Sustainably farmed and hand worked, our 50+ acres of vineyard are meticulously cared for, producing estate grown, award-winning wines. The Tasting Room is an antique barn with a warm, cozy atmosphere and spectacular views. Bring a picnic and enjoy our excellent hospitality, along with our award winning wines. Open year round.";
+		this.info = 'May-Dec: Sun, Mon, Thurs 11am-5pm, Fri-Sat 11am-6pm. Call/check website for other hours & events. Located in the picturesque Litchfield Hills, SMV is one of the state`s premier award winning vineyards. Sustainably farmed and hand worked, our 50+ acres of vineyard are meticulously cared for, producing estate grown, award-winning wines. The Tasting Room is an antique barn with a warm, cozy atmosphere and spectacular views. Bring a picnic and enjoy our excellent hospitality, along with our award winning wines. Open year round.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('SunsetMeadow').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=599+Old+Middle+Street,Goshen,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('SunsetMeadow', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Taylor')}/>*/}

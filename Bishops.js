@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Bishop's Orchards Winery";
 		this.pic = require('./assets/BishopsWine.jpg');
+		this.phone = '8662247467';
 		this.address = "1355 Boston Post Road, Guilford, CT 06437";
-		this.info = "Since 1871, six generations of Bishop's have been serving Connecticut with farm products. Specialty fruit wines created by Bishop’s use our apples, peaches, pears, strawberries, and raspberries. Since the winery’s inception in 2005, we have won over 318 +medals. Outdoor seating overlooking the orchard and prepared foods from our kitchen will add to your experience. We also offer a great selection of Connecticut Farm Wines! From dry to sweet, award–winning wines from other Farm Wineries complements our own wide selection. Our Farm Market, Farm Kitchen, Ice Cream, Pick Your Own and CSA provide you with a great ”local” experience.";
+		this.info = 'Open year round: Mon-Sat 8am-6:30pm, Sun 10am-5:30pm. Farm Market hours: Mon-Sat 8am-7pm, Sun 9am-6pm. Weekend wine tours at 2pm. Since 1871, six generations of Bishop`s have been serving Connecticut with farm products. Specialty fruit wines created by Bishop’s use our apples, peaches, pears, strawberries, and raspberries. Since the winery’s inception in 2005, we have won over 318 +medals. Outdoor seating overlooking the orchard and prepared foods from our kitchen will add to your experience. We also offer a great selection of Connecticut Farm Wines! From dry to sweet, award–winning wines from other Farm Wineries complements our own wide selection. Our Farm Market, Farm Kitchen, Ice Cream, Pick Your Own and CSA provide you with a great ”local” experience.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Bishops').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=1355+Boston+Post+Road,Guilford,CT')
@@ -88,6 +97,7 @@ constructor(props) {
 				}}
 				/>
 
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
 				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Bishops', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Brignole')}/>*/}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Platform, Linking } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Platform, Linking, AsyncStorage } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Jonathan Edwards Winery";
 		this.pic = require('./assets/JonathanEdwardsWine.png');
+		this.phone = '860-535-0202';
 		this.address = "74 Chester Main Road, North Stonington, CT 06359";
-		this.info = "Just ten minutes from Mystic Seaport, the original dairy farm has been converted into a state-of-the-art winery featuring a modern California-influenced tasting room and gift shop. Visitors can enjoy sampling fine wines from our stone patio or nestled by the fire and are encouraged to bring a picnic or choose from our selection of local cheeses and sausages.";
+		this.info = ' Open daily 11am-5pm, 4:30pm on high- season weekends, check website or call. Tours daily at noon, weather permitting. Groups of 8 or more by reservation only. Festivals June 2-3 & Oct 6-7. Just ten minutes from Mystic Seaport, the original dairy farm has been converted into a state-of-the-art winery featuring a modern California-influenced tasting room and gift shop. Visitors can enjoy sampling fine wines from our stone patio or nestled by the fire and are encouraged to bring a picnic or choose from our selection of local cheeses and sausages.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Jonathan').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=74+Chester+Main+Road,North+Stonington,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Jonathan', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Jones')}/>*/}

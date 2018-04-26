@@ -12,10 +12,10 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Arrigoni Winery";
 		this.pic = require('./assets/ArrigoniWine.jpg');
+		this.phone = '860-342-1999';
 		this.address = "1287 Portland-Cobalt Road, Rte 66, Portland, CT 06480";
-		this.info = "Arrigoni Winery is nestled in the fertile Connecticut River Valley, and offers visitors an indoor Tasting Room and seating area with 18 different wines, a relaxing sunset Patio, vineyard-side picnic area and covered and heated Pavilion. After a wine tasting, browse the extensive gift shop and enjoy live music and scenic views of the vineyard. Event space is available year-round for weddings, bridal showers, family reunions and more. Please contact Monica@arrigoniwinery.com to learn more. Bus parking and private event parking available. Visitors are encouraged to bring a picnic. No outside beverages allowed. Open year-round.";
+		this.info = 'Open year round: Sat-Sun 11am-6pm. Check Facebook/website for additional hours & entertainment. Arrigoni Winery is nestled in the fertile Connecticut River Valley, and offers visitors an indoor Tasting Room and seating area with 18 different wines, a relaxing sunset Patio, vineyard-side picnic area and covered and heated Pavilion. After a wine tasting, browse the extensive gift shop and enjoy live music and scenic views of the vineyard. Event space is available year-round for weddings, bridal showers, family reunions and more. Please contact Monica@arrigoniwinery.com to learn more. Bus parking and private event parking available. Visitors are encouraged to bring a picnic. No outside beverages allowed. Open year-round.';
 		this.stamp = require('./assets/Stamp.png');
-		this.hours = "Sat-Sun 11am-6pm. Extended hours in Spring, Summer and Fall. Please check Arrigoniwinery.com and Facebook for extended hours and entertainment schedule. ";
 		this.noStamp = require('./assets/no-stamp.png');
 	}
 	componentDidMount() {
@@ -100,7 +100,7 @@ constructor(props) {
 					height: 350
 				}}
 				/>
-				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.hours} </Text>
+				<Text style = {{fontSize: 16, color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>				
 				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>

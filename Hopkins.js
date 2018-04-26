@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Platform, Linking } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Platform, Linking, AsyncStorage } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Hopkins Vineyard, LLC";
 		this.pic = require('./assets/HopkinsWine.jpg');
+		this.phone = '860-868-7954';
 		this.address = "25 Hopkins Road, New Preston, CT 06777";
-		this.info = "High above the shores of beautiful Lake Waramaug in the Litchfield Hills of the Western Connecticut Highlands, Hopkins Vineyard offers tastings and sales of award-winning estate bottled wines grown on 30 acres adjacent to the winery. The Hayloft Wine Bar serves wines by the glass in a relaxed setting with a beautiful view of the lake. The Vineyard shop has a unique selection of gifts and locally grown foods. This family-owned century farm since 1787 welcomes visitors and host special events year round.";
+		this.info = 'Open year round for wine tasting & sales. During the Passport Program (May 4-Nov 4): Mon-Fri 10am-5pm, Sat 10am-7pm, Sun 11am-6pm. Wine tasting concludes 30 minutes prior to closing. High above the shores of beautiful Lake Waramaug in the Litchfield Hills of the Western Connecticut Highlands, Hopkins Vineyard offers tastings and sales of award-winning estate bottled wines grown on 30 acres adjacent to the winery. The Hayloft Wine Bar serves wines by the glass in a relaxed setting with a beautiful view of the lake. The Vineyard shop has a unique selection of gifts and locally grown foods. This family-owned century farm since 1787 welcomes visitors and host special events year round.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Hopkins').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=25+Hopkins+Road,New+Preston,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Hopkins', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Jerram')}/>*/}

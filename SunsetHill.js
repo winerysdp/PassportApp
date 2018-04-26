@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Sunset Hill Vineyard, LLC";
 		this.pic = require('./assets/SunsetHillWine.jpg');
+		this.phone = '860-598-9427';
 		this.address = "5 Elys Ferry Road, Lyme, CT 06371";
-		this.info = " We are a family-run boutique vineyard on 12 acres in Lyme. As a small vineyard, we pride ourselves in offering an intimate experience for up to eight guests where you can meet the winemakers, tour the vineyard, and hang out on our deck overlooking the Chardonnay grapes, while you sample the fruits of our labor. Make an appointment for a tasting or purchase today.";
+		this.info = 'Open for tastings May-Nov: Sat 12-6pm, Sun 12-5pm. Please call for an appointment. We are a family-run boutique vineyard on 12 acres in Lyme. As a small vineyard, we pride ourselves in offering an intimate experience for up to eight guests where you can meet the winemakers, tour the vineyard, and hang out on our deck overlooking the Chardonnay grapes, while you sample the fruits of our labor. Make an appointment for a tasting or purchase today.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('SunsetHill').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=5+Elys+Ferry+Road,Lyme,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('SunsetHill', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('SunsetMeadow')}/>*/}

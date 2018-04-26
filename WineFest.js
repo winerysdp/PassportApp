@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -7,19 +7,28 @@ export default class Brignole extends Component {
 constructor(props) {
 		super(props);
 		this.state = {text: ""};
-		this.name = "Brignole Vineyards";
-		this.pic = require('./assets/BrignoleWine.jpg');
-		this.address = "103 Hartford Avenue, East Granby, CT 06026";
-		this.info = "Newly opened family-owned and operated vineyard and function facility, striving for perfection in a glass! With 8 different wines and more in the making, along with fresh and different options of Sangrias to wine slushies changing seasonally! With weekly live music and gorgeous tasting room, we are sure to please anyone!";
+		this.name = "Connecticut Wine Festival";
+		this.pic = require('./assets/WineFestWine.jpg');
+		this.phone = '860-216-6439';
+		this.address = "Goshen Fairgrounds, Rte. 63, Goshen, CT";
+		this.info = 'JULY 21-22, 2018: Sat 12-7pm, Sun 12-6pm.For tickets, detailed festival information, and directions call 860-216- 6439, Mon-Fri from 9am-3pm or visit www.ctwine.com. Please bring your ID';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Fest').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
-			Linking.openURL('http://maps.apple.com/?daddr=103+Hartford+Avenue,East+Granby,CT')
+			Linking.openURL('http://maps.apple.com/?daddr=Goshen+Fairgrounds+Rte.+63%2C+Goshen+CT')
 		}
 		else {
-			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=103+Hartford+Avenue%2C+East+Granby%2C+CT')
+			Linking.openURL('https://www.google.com/maps/dir/?api=1&destination=Goshen+Fairgrounds+Rte.+63%2C+Goshen+CT')
 		}
 	}
 	displayStamp() {
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Fest', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Brignole')}/>*/}

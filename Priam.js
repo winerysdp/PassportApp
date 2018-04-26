@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Priam Vineyards";
 		this.pic = require('./assets/PriamWine.jpg');
+		this.phone = '860-267-8520';
 		this.address = "11 Shailor Hill Road, Colchester, CT 06415";
-		this.info = "A sustainable vineyard & completely solar powered winery located in Colchester, CT. on 40+ acres, with a magnificent view of the new England countryside. We offer estate grown, international award-winning wines to enjoy by glass or bottle purchases. Outside picnics are welcome on our wine patio or in the vineyard with wine purchase. We are the largest outdoor wedding and event venue doing events up to 500 guests. See our website for information on our summer concerts, dinners, festivals and weddings that are magical in this beautiful environment. ";
+		this.info = 'Open year round. Hours vary. Jan-April: Fri-Sun 11am-6pm. May-Dec: Wed-Sun 11am-6pm. See website for extended or holiday hours, events, & concerts. A sustainable vineyard & completely solar powered winery located in Colchester, CT. on 40+ acres, with a magnificent view of the new England countryside. We offer estate grown, international award-winning wines to enjoy by glass or bottle purchases. Outside picnics are welcome on our wine patio or in the vineyard with wine purchase. We are the largest outdoor wedding and event venue doing events up to 500 guests. See our website for information on our summer concerts, dinners, festivals and weddings that are magical in this beautiful environment. ';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Priam').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=11+Shailor+Hill+Road,Colchester,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Priam', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Rosabianca')}/>*/}

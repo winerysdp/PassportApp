@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Platform, Linking } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Platform, Linking, AsyncStorage } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Preston Ridge Vineyard";
 		this.pic = require('./assets/PrestonWine.jpg');
+		this.phone = '860-383-4278';
 		this.address = "100 Miller Road, Preston, CT 06365";
-		this.info = " Located in historic Preston, Connecticut, Preston Ridge Vineyard is positioned at the peak of a ridge providing breathtaking views of the Connecticut countryside for over 20 miles. Come enjoy a tasting or glass of any of our many different wines, crafted on-site. We look forward to seeing you soon! Open April-Dec: Fridays (live music 5:30pm-8:30pm), Saturdays and Sundays (live music 12pm-3pm). Check our website for updated/holiday hours or call for information.";
+		this.info = 'Open April-Dec: Fri 1pm-9pm, Sat-Sun 11am-4:30pm. Located in historic Preston, Connecticut, Preston Ridge Vineyard is positioned at the peak of a ridge providing breathtaking views of the Connecticut countryside for over 20 miles. Come enjoy a tasting or glass of any of our many different wines, crafted on-site. We look forward to seeing you soon! Open April-Dec: Fridays (live music 5:30pm-8:30pm), Saturdays and Sundays (live music 12pm-3pm). Check our website for updated/holiday hours or call for information.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Preston').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=100+Miller+Road,Preston,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Preston', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Priam')}/>*/}

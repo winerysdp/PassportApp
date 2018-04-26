@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Lost Acres Vineyards";
 		this.pic = require('./assets/LostAcresWine.jpg');
+		this.phone = ' 860-324-9481';
 		this.address = "80 Lost Acres Road, North Granby, CT 06060 ";
-		this.info = "In the 1700’s, Lost Acres was a political no-man’s land known as “The Wedge.” In the early 1800’s the Wedge’s free spirited, independent minded, cider distilling hill farmers populated the area. Lost Acres Vineyard has extended this tradition into grape wine. We produce hand crafted boutique white and red wines, including our most popular wine, Wedge White. Grape growing and wine making is the central activity of our farm, but not the only one. Our horses and herb gardens also keep us busy. A visit to Lost Acres Vineyard offers great wine, art shows, picnics, music and more.";
+		this.info = 'Open April-Dec: Fri-Sun 12-5pm. In the 1700’s, Lost Acres was a political no-man’s land known as “The Wedge.” In the early 1800’s the Wedge’s free spirited, independent minded, cider distilling hill farmers populated the area. Lost Acres Vineyard has extended this tradition into grape wine. We produce hand crafted boutique white and red wines, including our most popular wine, Wedge White. Grape growing and wine making is the central activity of our farm, but not the only one. Our horses and herb gardens also keep us busy. A visit to Lost Acres Vineyard offers great wine, art shows, picnics, music and more.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Lost').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=80+Lost+Acres+Road,North+Granby,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Lost', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Maugle')}/>*/}

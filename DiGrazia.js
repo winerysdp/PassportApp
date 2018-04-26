@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "DiGrazia Vineyards";
 		this.pic = require('./assets/DiGraziaWine.jpg');
+		this.phone = '203-775-1616';
 		this.address = "131 Tower Road, Brookfield, CT 06804";
-		this.info = "We personally invite you to spend an afternoon at our winery located at 131 Tower Road, in historic Brookfield, Connecticut.  Spring, Summer and Fall hours 11am-5pm every day. We provide wine tastings ($9.40), free facility tours, and have a lovely picnic are with outside food permitted. We carry white red, blush, fruit, port, spiced, table and dessert wines of a unique variety, all resulting from 36 years in business. We hope to see you soon and know you will love our wines!";
+		this.info = 'May-Dec hours: Mon 11am-5pm, Thurs-Sun 11am-5pm (closed Tues & Wed). Jan-April hours: Fri-Sun 11am-5pm. We personally invite you to spend an afternoon at our winery located at 131 Tower Road, in historic Brookfield, Connecticut.  Spring, Summer and Fall hours 11am-5pm every day. We provide wine tastings ($9.40), free facility tours, and have a lovely picnic are with outside food permitted. We carry white red, blush, fruit, port, spiced, table and dessert wines of a unique variety, all resulting from 36 years in business. We hope to see you soon and know you will love our wines!';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('DiGrazia').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=131+Tower+Road,Brookfield,CT')
@@ -88,6 +97,7 @@ constructor(props) {
 				}}
 				/>
 
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>				
 				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('DiGrazia', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Gouveia')}/>*/}

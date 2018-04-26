@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Rosabianca Vineyards";
 		this.pic = require('./assets/RosabiancaWine.jpg');
+		this.phone = '203-208-1211';
 		this.address = "1536 Middletown Avenue, Northford, CT 06472";
-		this.info = "A family-owned and operated winery located in a restored barn in Northford. Currently, we are a quaint, rustic winery with the capacity to hold about 25 people. Please join us for a tasting, hear our story and don’t forget to bring some snacks to enjoy with a glass or bottle of our Italian style wines.";
+		this.info = 'Wine tastings stop 1 hour prior to close. May 4-Nov 4: Fri 3pm-8pm, Sat 11am-8pm, Sun 12-5pm. Nov 5, 2018-May 2, 2019: Fri 3pm-8pm, Sat 12-6pm, Sun 12-5pm. Closed holidays. A family-owned and operated winery located in a restored barn in Northford. Currently, we are a quaint, rustic winery with the capacity to hold about 25 people. Please join us for a tasting, hear our story and don’t forget to bring some snacks to enjoy with a glass or bottle of our Italian style wines.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Rosabianca').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=1536+Middletown+Avenue,Northford,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Rosabianca', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Rosedale')}/>*/}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Maugle Sierra Vineyards";
 		this.pic = require('./assets/MaugleWine.jpg');
+		this.phone = '860-464-2987';
 		this.address = "825-827 Colonel Ledyard Highway, Ledyard, CT 06339";
-		this.info = "Savor a taste of New England wine at Maugle Sierra Vineyards. Specializing in St. Croix wine, wine grapes and handcrafted wines. More than 60% of our wines are produced with grapes grown on the estate, and the majority of the rest are grown within 100 miles of the vineyard.";
+		this.info = 'Open year round: Fri-Sun 12-6pm. Open May & Nov: Wed-Mon 12-6pm. Open daily, June-Oct: 12-6pm. Bus tours & groups of 8 or more by prior reservation only. See website for extended & winter hours. Savor a taste of New England wine at Maugle Sierra Vineyards. Specializing in St. Croix wine, wine grapes and handcrafted wines. More than 60% of our wines are produced with grapes grown on the estate, and the majority of the rest are grown within 100 miles of the vineyard.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Maugle').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=825-827+Colonel+Ledyard+Highway,Ledyard,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Maugle', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Miranda')}/>*/}

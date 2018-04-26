@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Gouveia Vineyards";
 		this.pic = require('./assets/GouveiaWine.png');
+		this.phone = '203-265-5526';
 		this.address = "1339 Whirlwind Hill Road, Wallingford, CT 06492";
-		this.info = "Bring food, family, and friends to enjoy a glass of wine and our spectacular 360 degree views! Picnic in the summer with a glass of our delicious sangria or cozy up to a warm fire in the winter. Cellar tours Saturday and Sunday at 2 & 4 pm. There is no charge for tours and reservations are not required. Come visit...it's a great way to stay-cation in our beautiful state of Connecticut!";
+		this.info = 'Open daily March 1 - Dec. 31: Mon-Fri 11am-8pm, Sat-Sun 11am-6pm. Open Jan 2 - Feb. 28:  Thurs - Fri 11am-8pm, Sat-Sun 11am-6pm. Bring food, family, and friends to enjoy a glass of wine and our spectacular 360 degree views! Picnic in the summer with a glass of our delicious sangria or cozy up to a warm fire in the winter. Cellar tours Saturday and Sunday at 2 & 4 pm. There is no charge for tours and reservations are not required. Come visit...it`s a great way to stay-cation in our beautiful state of Connecticut!';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Gouveia').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=1339+Whirlwind+Hill+Road,Wallingford,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Gouveia', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Haight')}/>*/}

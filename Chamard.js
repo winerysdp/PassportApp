@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Platform, Linking } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Platform, Linking, AsyncStorage } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Chamard Vineyards";
 		this.pic = require('./assets/ChamardWine.jpg');
+		this.phone = '860-664-0299';
 		this.address = "115 Cow Hill Road, Clinton, CT 06413";
-		this.info = "Voted Connecticut's Best Winery, in 2013 by New Haven Living’s “Best Of”. We spread across 40 acres along the Southern Connecticut coast. Visit our vineyards farm wine bistro year round, enjoy farm to fork food, wine, and music. Join our email club to stay current on cool seasonal events.";
+		this.info = 'Winery & bistro open: Tues-Sat 11am-9pm; Sun 11am-8pm.  Additional hours Memorial Day to Columbus Day: Mon 11am-9pm. Voted Connecticut`s Best Winery, in 2013 by New Haven Living’s “Best Of”. We spread across 40 acres along the Southern Connecticut coast. Visit our vineyards farm wine bistro year round, enjoy farm to fork food, wine, and music. Join our email club to stay current on cool seasonal events.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Chamard').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=115+Cow+Hill+Road,Clinton,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Chamard', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('CTValley')}/>*/}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Staehly Farm Winery";
 		this.pic = require('./assets/StaehlyWine.png');
+		this.phone = '860-873-9774';
 		this.address = "278 Town Street, East Haddam, CT 06423";
-		this.info = " Explore the best that the CT River Valley has to offer at Staehly Farm & Winery. Nestled in the hills of the Seven Sisters, the winery is located on sprawling acreage in scenic and historic East Haddam. Gillette Castle State Park and Goodspeed Opera House make the Winery a perfect part of a day trip filled with good food, hiking, and wine! Staehly Farm Winery produces all of its own wines exclusively from fruit grown on the farm and in small, limited-quantity batches. The Apple, Blueberry, and Cherry wines have received numerous international awards and Pomodoro, a tomato wine, is the only one in New England. More wines released periodically; check website for more details. ";
+		this.info = 'Open May 4-Nov 4: Fri-Sat 12-6pm, Sun 12-4pm. Explore the best that the CT River Valley has to offer at Staehly Farm & Winery. Nestled in the hills of the Seven Sisters, the winery is located on sprawling acreage in scenic and historic East Haddam. Gillette Castle State Park and Goodspeed Opera House make the Winery a perfect part of a day trip filled with good food, hiking, and wine! Staehly Farm Winery produces all of its own wines exclusively from fruit grown on the farm and in small, limited-quantity batches. The Apple, Blueberry, and Cherry wines have received numerous international awards and Pomodoro, a tomato wine, is the only one in New England. More wines released periodically; check website for more details. ';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Staehly').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=278+Town+Street,East+Haddam,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Staehly', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Stonington')}/>*/}

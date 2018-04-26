@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Sharpe Hill Vineyard";
 		this.pic = require('./assets/SharpeHillWine.jpg');
+		this.phone = '860-974-3549';
 		this.address = "108 Wade Road, Pomfret, CT 06258";
-		this.info = "Sharpe Hill Vineyard is Connecticut’s largest and most awarded winery. Our most popular wine, Ballet of Angels, is the bestselling wine made in New England. Sharpe Hill also features the Zagat rated gourmet restaurant, the Fireside Tavern and Wine Garden. The restaurant has received a four star rating from the New York Times. Reservations are required. The winery and restaurant are open all year round. ";
+		this.info = 'Hours: Fri-Sun 11am-5pm. Sharpe Hill Vineyard is Connecticut’s largest and most awarded winery. Our most popular wine, Ballet of Angels, is the bestselling wine made in New England. Sharpe Hill also features the Zagat rated gourmet restaurant, the Fireside Tavern and Wine Garden. The restaurant has received a four star rating from the New York Times. Reservations are required. The winery and restaurant are open all year round. ';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Sharpe').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=108+Wade+Road,Pomfret,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Sharpe', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Staehly')}/>*/}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Cassidy Hill Vineyard";
 		this.pic = require('./assets/CassidyHillWine.jpg');
+		this.phone = '860-498-1126';
 		this.address = "454 Cassidy Hill Road, Coventry, CT 06238";
-		this.info = "Experience the natural beauty that is Cassidy Hill Vineyard. On fertile farmland overlooking the rolling hills of eastern Connecticut, we produce an eclectic collection of New England styled wines. Visit the log cabin winery's tasting room. Stroll through our vineyard. Enjoy a glass of wine on the winery's porch.";
+		this.info = 'Open April to Dec: Fri 11am-8pm (after Labor Day 11am- 5pm), Sat-Sun 11am-5pm. Experience the natural beauty that is Cassidy Hill Vineyard. On fertile farmland overlooking the rolling hills of eastern Connecticut, we produce an eclectic collection of New England styled wines. Visit the log cabin winery`s tasting room. Stroll through our vineyard. Enjoy a glass of wine on the winery`s porch.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Cassidy').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=454+Cassidy+Hill+Road,Coventry,CT')
@@ -88,6 +97,7 @@ constructor(props) {
 				}}
 				/>
 
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
 				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Cassidy', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Chamard')}/>*/}

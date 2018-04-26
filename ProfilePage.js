@@ -266,7 +266,17 @@ export default class ProfilePage extends Component {
 				
 				<Button
 					title='Submit'
-					onPress={()=>_submit()}
+					onPress={
+						()=>Alert.alert(
+							  'Are you sure you wish to submit your profile?',
+							  'This information cannot be changed later. Press cancel to review data before submitting',
+							  [
+								{text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+								{text: 'Submit', onPress: ()=>_submit()},
+							  ],
+							  { cancelable: false }
+						)
+					}	
 				/>
 				
 				<Button

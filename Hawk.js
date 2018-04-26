@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform } from 'react-native';
+import { AppRegistry, Alert, Button, Image, StyleSheet, Text, View, TextInput, Keyboard, ScrollView, Linking, Platform, AsyncStorage} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {stamped} from './QRScanner.js';
 
@@ -9,11 +9,20 @@ constructor(props) {
 		this.state = {text: ""};
 		this.name = "Hawk Ridge Winery";
 		this.pic = require('./assets/HawkRidgeWine.jpg');
+		this.phone = '860-274-7440';
 		this.address = "28 Plungis Road, Watertown, CT 06795";
-		this.info = "Hawk Ridge Winery is in the Litchfield Hills on a peaceful farm setting. The winery property has been a working farm for decades. We're surrounded by pastoral and hillside forest views which are vibrant with color in the fall. The Red Tail hawks that call the winery their home can be seen in the treetops. Our post and beam tasting room showcases a field stone fireplace made from our vineyard field stones. And, our custom black walnut bar top is from our local trees. The spacious covered deck is an excellent spot to relax with a glass of HRW wine.";
+		this.info = 'Open year round: Fri-Sat 12-8pm, Sun 12-6pm. Additional hours May 4-Nov 4: Mon-Wed 12-6pm, Thurs 12-8pm. After Nov 4th, check website for events, additional hours & holiday hours. Hawk Ridge Winery is in the Litchfield Hills on a peaceful farm setting. The winery property has been a working farm for decades. We`re surrounded by pastoral and hillside forest views which are vibrant with color in the fall. The Red Tail hawks that call the winery their home can be seen in the treetops. Our post and beam tasting room showcases a field stone fireplace made from our vineyard field stones. And, our custom black walnut bar top is from our local trees. The spacious covered deck is an excellent spot to relax with a glass of HRW wine.';
 		this.stamp = require('./assets/Stamp.png');
 		this.noStamp = require('./assets/no-stamp.png');
 	}
+	componentDidMount() {
+		AsyncStorage.getItem('Hawk').then((value) => {
+		if (value !== null){
+			// saved input is available
+			this.setState({ text: value }); // Note: update state with last entered value
+		}
+		}).done();
+}
 	goToMap() {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('http://maps.apple.com/?daddr=28+Plungis+Road,Watertown,CT')
@@ -88,7 +97,8 @@ constructor(props) {
 				}}
 				/>
 
-				<Button style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
+				<Text style = {{fontSize: 20, fontWeight: 'bold', color: '#14487a', textAlign: 'center'}}> {this.phone} </Text>	
+				<Button style style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}} title = {this.address} onPress={()=>this.goToMap()}/>
 				{this.displayStamp()}
 				<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {this.info} </Text>
 				</View>
@@ -106,7 +116,10 @@ constructor(props) {
 					editable = {true}
 					multiline = {true}
 					numberofLines = {4}
-					onChangeText={(text) => this.setState({text})}
+					 onChangeText={(text) => { 
+						this.setState({text});
+						AsyncStorage.setItem('Hawk', text); // Note: persist input
+					 }}
 					value={this.state.text}
 				/>
 				{/*<Button title="View next Winery" onPress={() => navigate('Holmberg')}/>*/}
