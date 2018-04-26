@@ -35,10 +35,15 @@ export default class ProfilePage extends Component {
 				})
 			})
 			//.then((response) => response.json())
+			.then(function(response) {
+				return response.json()
+			})
 			.then((responseJson) => {
 				// optionally get error code if user already exists
 				userId = responseJson.response;
-				console.log(userId);
+				//console.log(response);
+				console.log(responseJson);
+				console.log(global.userId);
 				sState = true;
 				navigate('PassNav')
 			})

@@ -87,24 +87,46 @@ export default class qrScanner extends Component {
 
 _submit() {
 	const { navigate } = this.props.navigation;
-	if(sState){
-		//Do the submit thing
-		
-    stamped[pos] = true;
-    navigate(dest);
-	}
-	else{
-		Alert.alert(
-			'Profile needs to be set up first',
-			'Do you want to go now?',
-			[
-			{text: 'Go Now',onPress: () => navigate('ProfilePage')},
-			{text: 'Cancel', onPress: () => navigate('PassNav')},
-			],
-			{cancellable: false}
+
+		if(global.sState){
+			//Do the submit thing
+		fetch('http://sdp-winerypassport.cse.uconn.edu/api/stamps/add', {
+				method: 'POST',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					user_id: global.userId,
+					winery_id: dataNum,
+				})
+			})
+			//.then((response) => response.json())
+			.then((responseJson) => {
+				// optionally get error code if stamp already exists
+				console.log("stamped");
+				if(!stamped[pos]){
+					stamped[pos] = true;}
+				navigate(dest);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 			
-		);
-	}
+		}
+		else{
+			Alert.alert(
+				'Profile needs to be set up first',
+				'Do you want to go now?',
+				[
+				{text: 'Go Now',onPress: () => navigate('ProfilePage')},
+				{text: 'Cancel', onPress: () => navigate('PassNav')},
+				],
+				{cancellable: false}
+				
+			);
+		}
+
 };
   
   _handlePressCancel = () => {
@@ -380,14 +402,14 @@ _submit() {
           <Text style = {{color: 'white', fontSize: 18,}}> Press to Stamp </Text>
           <TouchableHighlight 
             onPress = {() => this.jumpToWinery()}>
-           /* <Image
+            <Image
               style={{
                 resizeMode: 'contain',
                 resizeMode: 'cover',
                 width: 150,
                 height: 150,
               }}
-              source = {stampImage}/>*/
+              source = {stampImage}/>
           </TouchableHighlight>
         </View>
       );
