@@ -255,6 +255,7 @@ export default class ProfilePage extends Component {
 					<Text style = {{fontSize: 12, color: '#14487a', textAlign: 'center'}}> {"Phone Number for contact if you win"} </Text>
 					<TextInput
 						style={{height: 40, width: 150, borderColor: 'gray', backgroundColor: 'white', borderWidth: 1}}
+						keyboardType = 'phone-pad'
 							onChangeText={(text) => this.setState(previousState => {
 								return { phone: text };
 						})}
